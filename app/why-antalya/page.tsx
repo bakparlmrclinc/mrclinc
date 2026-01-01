@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
-import { Card, CardContent } from "@/components/ui/Card";
 
 export default function WhyAntalyaPage() {
   const advantages = [
@@ -71,13 +70,13 @@ export default function WhyAntalyaPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-gray-50">
+      <main className="min-h-screen" style={{ backgroundColor: '#F9FAFB' }}>
         {/* Hero */}
-        <section className="bg-primary-900 text-white py-16">
+        <section className="py-16" style={{ backgroundColor: '#1B4965' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl">
-              <h1 className="text-4xl font-bold mb-4">Why Antalya?</h1>
-              <p className="text-xl text-primary-100">
+              <h1 className="text-4xl font-bold mb-4 text-white">Why Antalya?</h1>
+              <p className="text-xl" style={{ color: '#B3DDED' }}>
                 Discover why thousands of UK patients choose Antalya for their healthcare needs.
               </p>
             </div>
@@ -85,12 +84,12 @@ export default function WhyAntalyaPage() {
         </section>
 
         {/* Stats */}
-        <section className="bg-white py-12 border-b border-gray-200">
+        <section className="py-12 bg-white border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-3 gap-8 text-center">
               {stats.map((stat, idx) => (
                 <div key={idx}>
-                  <p className="text-3xl font-bold text-primary-600 mb-2">{stat.value}</p>
+                  <p className="text-3xl font-bold mb-2" style={{ color: '#1B4965' }}>{stat.value}</p>
                   <p className="text-gray-600 text-sm">{stat.label}</p>
                 </div>
               ))}
@@ -99,20 +98,21 @@ export default function WhyAntalyaPage() {
         </section>
 
         {/* Advantages Grid */}
-        <section className="py-16">
+        <section className="py-16" style={{ backgroundColor: '#F9FAFB' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-bold text-gray-900 text-center mb-12">Key Advantages</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {advantages.map((advantage, idx) => (
-                <Card key={idx} variant="bordered">
-                  <CardContent className="py-6">
-                    <div className="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center text-primary-600 mb-4">
-                      {advantage.icon}
-                    </div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-2">{advantage.title}</h3>
-                    <p className="text-gray-600 text-sm">{advantage.description}</p>
-                  </CardContent>
-                </Card>
+                <div key={idx} className="bg-white rounded-xl p-6 border border-gray-200">
+                  <div 
+                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                    style={{ backgroundColor: '#F0F7FA', color: '#1B4965' }}
+                  >
+                    {advantage.icon}
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">{advantage.title}</h3>
+                  <p className="text-gray-600 text-sm">{advantage.description}</p>
+                </div>
               ))}
             </div>
           </div>
@@ -123,100 +123,77 @@ export default function WhyAntalyaPage() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-bold text-gray-900 text-center mb-8">A Practical Comparison</h2>
             
-            <Card variant="bordered">
-              <CardContent className="py-6">
-                <div className="overflow-x-auto">
-                  <table className="w-full text-sm">
-                    <thead>
-                      <tr className="border-b border-gray-200">
-                        <th className="text-left py-3 px-4 font-semibold text-gray-900">Factor</th>
-                        <th className="text-left py-3 px-4 font-semibold text-gray-900">UK (NHS)</th>
-                        <th className="text-left py-3 px-4 font-semibold text-gray-900">UK (Private)</th>
-                        <th className="text-left py-3 px-4 font-semibold text-primary-600">Antalya</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-100">
-                      <tr>
-                        <td className="py-3 px-4 text-gray-600">Wait Time</td>
-                        <td className="py-3 px-4 text-gray-600">Weeks to months</td>
-                        <td className="py-3 px-4 text-gray-600">Days to weeks</td>
-                        <td className="py-3 px-4 text-primary-600 font-medium">Days to weeks</td>
-                      </tr>
-                      <tr>
-                        <td className="py-3 px-4 text-gray-600">Cost</td>
-                        <td className="py-3 px-4 text-gray-600">Free (taxpayer funded)</td>
-                        <td className="py-3 px-4 text-gray-600">Higher</td>
-                        <td className="py-3 px-4 text-primary-600 font-medium">Competitive</td>
-                      </tr>
-                      <tr>
-                        <td className="py-3 px-4 text-gray-600">Elective Availability</td>
-                        <td className="py-3 px-4 text-gray-600">Limited</td>
-                        <td className="py-3 px-4 text-gray-600">Good</td>
-                        <td className="py-3 px-4 text-primary-600 font-medium">Excellent</td>
-                      </tr>
-                      <tr>
-                        <td className="py-3 px-4 text-gray-600">Travel Required</td>
-                        <td className="py-3 px-4 text-gray-600">No</td>
-                        <td className="py-3 px-4 text-gray-600">No</td>
-                        <td className="py-3 px-4 text-primary-600 font-medium">Yes (~4 hours)</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <p className="text-xs text-gray-500 mt-4">
-                  This is a general comparison. Individual experiences may vary. Always consult with healthcare providers for your specific situation.
-                </p>
-              </CardContent>
-            </Card>
+            <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr style={{ backgroundColor: '#F9FAFB' }}>
+                      <th className="text-left py-4 px-4 font-semibold text-gray-900 border-b border-gray-200">Factor</th>
+                      <th className="text-left py-4 px-4 font-semibold text-gray-900 border-b border-gray-200">UK (NHS)</th>
+                      <th className="text-left py-4 px-4 font-semibold text-gray-900 border-b border-gray-200">UK (Private)</th>
+                      <th className="text-left py-4 px-4 font-semibold border-b border-gray-200" style={{ color: '#1B4965' }}>Antalya</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100">
+                    <tr>
+                      <td className="py-4 px-4 text-gray-600">Wait Time</td>
+                      <td className="py-4 px-4 text-gray-600">Weeks to months</td>
+                      <td className="py-4 px-4 text-gray-600">Days to weeks</td>
+                      <td className="py-4 px-4 font-medium" style={{ color: '#1B4965' }}>Days to weeks</td>
+                    </tr>
+                    <tr>
+                      <td className="py-4 px-4 text-gray-600">Cost</td>
+                      <td className="py-4 px-4 text-gray-600">Free (taxpayer funded)</td>
+                      <td className="py-4 px-4 text-gray-600">Higher</td>
+                      <td className="py-4 px-4 font-medium" style={{ color: '#1B4965' }}>Competitive</td>
+                    </tr>
+                    <tr>
+                      <td className="py-4 px-4 text-gray-600">Elective Availability</td>
+                      <td className="py-4 px-4 text-gray-600">Limited</td>
+                      <td className="py-4 px-4 text-gray-600">Good</td>
+                      <td className="py-4 px-4 font-medium" style={{ color: '#1B4965' }}>Excellent</td>
+                    </tr>
+                    <tr>
+                      <td className="py-4 px-4 text-gray-600">Travel Required</td>
+                      <td className="py-4 px-4 text-gray-600">No</td>
+                      <td className="py-4 px-4 text-gray-600">No</td>
+                      <td className="py-4 px-4 font-medium" style={{ color: '#1B4965' }}>Yes (~4 hours)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-xs text-gray-500 p-4 border-t border-gray-100">
+                This is a general comparison. Individual experiences may vary. Always consult with healthcare providers for your specific situation.
+              </p>
+            </div>
           </div>
         </section>
 
         {/* Antalya as a Destination */}
-        <section className="py-16">
+        <section className="py-16" style={{ backgroundColor: '#F9FAFB' }}>
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-bold text-gray-900 text-center mb-8">Antalya: More Than Healthcare</h2>
             <div className="grid sm:grid-cols-2 gap-6">
-              <Card variant="bordered">
-                <CardContent className="py-6">
-                  <h3 className="font-bold text-gray-900 mb-3">Tourism Infrastructure</h3>
-                  <p className="text-gray-600 text-sm">
-                    As the 8th most visited city in the world, Antalya has excellent tourism infrastructure including international hotels, English-speaking services, and reliable transportation.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card variant="bordered">
-                <CardContent className="py-6">
-                  <h3 className="font-bold text-gray-900 mb-3">Recovery Environment</h3>
-                  <p className="text-gray-600 text-sm">
-                    Combine recovery with relaxation. The Mediterranean climate and resort atmosphere can make post-procedure recovery more comfortable than being at home.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card variant="bordered">
-                <CardContent className="py-6">
-                  <h3 className="font-bold text-gray-900 mb-3">Companion-Friendly</h3>
-                  <p className="text-gray-600 text-sm">
-                    Family members or friends can accompany you. While you recover, they can enjoy Antalya's beaches, historic sites, and local cuisine.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card variant="bordered">
-                <CardContent className="py-6">
-                  <h3 className="font-bold text-gray-900 mb-3">Established Healthcare Hub</h3>
-                  <p className="text-gray-600 text-sm">
-                    Antalya has developed as a healthcare destination with specialized medical tourism coordinators, translators, and patient services built into the local healthcare ecosystem.
-                  </p>
-                </CardContent>
-              </Card>
+              {[
+                { title: "Tourism Infrastructure", desc: "As the 8th most visited city in the world, Antalya has excellent tourism infrastructure including international hotels, English-speaking services, and reliable transportation." },
+                { title: "Recovery Environment", desc: "Combine recovery with relaxation. The Mediterranean climate and resort atmosphere can make post-procedure recovery more comfortable than being at home." },
+                { title: "Companion-Friendly", desc: "Family members or friends can accompany you. While you recover, they can enjoy Antalya's beaches, historic sites, and local cuisine." },
+                { title: "Established Healthcare Hub", desc: "Antalya has developed as a healthcare destination with specialized medical tourism coordinators, translators, and patient services built into the local healthcare ecosystem." }
+              ].map((item, idx) => (
+                <div key={idx} className="bg-white rounded-xl p-6 border border-gray-200">
+                  <h3 className="font-bold text-gray-900 mb-3">{item.title}</h3>
+                  <p className="text-gray-600 text-sm">{item.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* CTA */}
-        <section className="py-16 bg-primary-900 text-white">
+        <section className="py-16" style={{ backgroundColor: '#1B4965' }}>
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-2xl font-bold mb-4">Explore Your Options</h2>
-            <p className="text-primary-100 mb-8">
+            <h2 className="text-2xl font-bold mb-4 text-white">Explore Your Options</h2>
+            <p className="mb-8" style={{ color: '#B3DDED' }}>
               Submit a request to receive quotes from qualified healthcare providers in Antalya. No obligation.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -224,7 +201,11 @@ export default function WhyAntalyaPage() {
                 <Button variant="accent" size="lg">Submit Request</Button>
               </Link>
               <Link href="/services">
-                <Button variant="outline" size="lg" className="border-white text-white hover:bg-primary-800">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  style={{ borderColor: 'rgba(255,255,255,0.3)', color: 'white' }}
+                >
                   View Services
                 </Button>
               </Link>

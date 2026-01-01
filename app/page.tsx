@@ -1,278 +1,500 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
-import { Card, CardContent } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
+import { Card, CardContent } from "@/components/ui/Card";
 
-export default function HomePage() {
-  const services = [
-    {
-      title: "Aesthetic Surgery",
-      description: "Face, breast, and body procedures",
-      href: "/services#aesthetic",
-      icon: (
-        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      )
-    },
-    {
-      title: "Cancer Surgery",
-      description: "Oncological surgical procedures",
-      href: "/services#cancer",
-      badge: "Free Second Opinion",
-      icon: (
-        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-        </svg>
-      )
-    },
-    {
-      title: "General Surgery",
-      description: "Non-oncological procedures",
-      href: "/services#general",
-      badge: "Free Second Opinion",
-      icon: (
-        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-        </svg>
-      )
-    }
-  ];
-
-  const steps = [
-    { number: 1, title: "Submit Request", description: "Fill out our simple form with your service needs" },
-    { number: 2, title: "Receive Quotes", description: "Clinics review and send quotes within 48-72 hours" },
-    { number: 3, title: "Compare & Decide", description: "You compare options and make your own decision" }
-  ];
-
-  const stats = [
-    { value: "1.2M+", label: "International patients visit Turkey annually" },
-    { value: "50+", label: "JCI-accredited hospitals in Turkey" },
-    { value: "Free", label: "Our coordination service for patients" }
-  ];
-
+export default function Home() {
   return (
     <>
       <Header />
       <main>
-        {/* Hero */}
-        <section className="bg-gradient-to-b from-primary-900 to-primary-800 text-white py-20">
+        {/* ============================================
+            HERO SECTION
+            ============================================ */}
+        <section 
+          className="relative min-h-[90vh] overflow-hidden"
+          style={{ background: 'linear-gradient(135deg, #f0f7fa 0%, #ffffff 50%, #f0f7fa 100%)' }}
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Left Content */}
+              <div className="relative z-10">
+                <p 
+                  className="font-medium mb-4 tracking-wide uppercase text-sm"
+                  style={{ color: '#1B4965' }}
+                >
+                  Healthcare Pathway Coordination
+                </p>
+                
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+                  Your Journey to
+                  <span style={{ color: '#1B4965' }}> Quality Healthcare</span>
+                  {" "}in Antalya
+                </h1>
+                
+                <p className="text-xl text-gray-600 mb-8 max-w-lg">
+                  We coordinate pathways between UK patients and experienced healthcare 
+                  providers in Turkey. You receive quotes, compare options, and decide.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-4 mb-12">
+                  <Link href="/apply">
+                    <Button variant="accent" size="lg">
+                      Submit Your Request
+                    </Button>
+                  </Link>
+                  <Link href="/how-it-works">
+                    <Button variant="outline" size="lg">
+                      How It Works
+                    </Button>
+                  </Link>
+                </div>
+
+                {/* Trust Indicators */}
+                <div className="flex flex-wrap items-center gap-6 text-sm text-gray-500">
+                  <div className="flex items-center gap-2">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#22C55E' }}>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Free Consultation</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#22C55E' }}>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>No Obligation</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#22C55E' }}>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>You Decide</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right - Hero Image */}
+              <div className="relative">
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                  <Image
+                    src="/images/hero-patient.jpg"
+                    alt="Patient consultation"
+                    width={600}
+                    height={450}
+                    className="w-full h-auto object-cover"
+                    priority
+                  />
+                  
+                  {/* Floating Card - Free Second Opinion */}
+                  <div 
+                    className="absolute bottom-6 left-6 right-6 rounded-xl p-4 shadow-lg border border-gray-100"
+                    style={{ backgroundColor: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(8px)' }}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <span 
+                          className="inline-block px-2 py-1 text-xs font-semibold rounded mb-2"
+                          style={{ backgroundColor: '#DCFCE7', color: '#166534' }}
+                        >
+                          FREE
+                        </span>
+                        <h3 className="font-semibold text-gray-900">Second Opinion Service</h3>
+                        <p className="text-sm text-gray-600">For cancer & surgery patients</p>
+                      </div>
+                      <Link href="/services#second-opinion">
+                        <Button variant="success" size="sm">
+                          Learn More
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Background Decorative Elements */}
+                <div 
+                  className="absolute -top-8 -right-8 w-72 h-72 rounded-full opacity-50 -z-10"
+                  style={{ backgroundColor: '#D9EEF5' }}
+                />
+                <div 
+                  className="absolute -bottom-12 -left-12 w-48 h-48 rounded-full opacity-50 -z-10"
+                  style={{ backgroundColor: '#FFEDD5' }}
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================
+            SERVICES OVERVIEW
+            ============================================ */}
+        <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                Connecting UK Patients with Antalya Healthcare
-              </h1>
-              <p className="text-xl text-primary-100 mb-8">
-                We coordinate pathways between UK patients and Turkish healthcare providers. 
-                Submit your request, receive quotes directly from clinics, and make your own informed decision.
+            <div className="text-center max-w-2xl mx-auto mb-16">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Services We Coordinate
+              </h2>
+              <p className="text-gray-600">
+                From aesthetic procedures to complex surgeries, we help you connect 
+                with qualified healthcare providers in Antalya.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/apply">
-                  <Button variant="accent" size="lg">Submit Request</Button>
-                </Link>
-                <Link href="/services#second-opinion">
-                  <Button variant="outline" size="lg" className="border-white text-white hover:bg-primary-700">
-                    Free Second Opinion
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Aesthetic Surgery */}
+              <div className="bg-white rounded-2xl p-8 border border-gray-200 text-center hover:shadow-lg transition-shadow">
+                <div 
+                  className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6"
+                  style={{ backgroundColor: '#F0F7FA' }}
+                >
+                  <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#1B4965' }}>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  Aesthetic Surgery
+                </h3>
+                <p className="text-gray-600 mb-4 text-sm">
+                  Face, breast, body contouring, and hair restoration procedures 
+                  with experienced surgeons.
+                </p>
+                <ul className="text-sm text-gray-500 space-y-1 mb-6">
+                  <li>Rhinoplasty</li>
+                  <li>Breast Surgery</li>
+                  <li>Liposuction & BBL</li>
+                  <li>Hair Transplant</li>
+                </ul>
+                <Link href="/services#aesthetic">
+                  <Button variant="ghost" size="sm">
+                    View All Procedures
                   </Button>
                 </Link>
               </div>
-              <p className="text-sm text-primary-200 mt-6">
-                Our coordination service is free for patients. You only pay the clinic you choose.
-              </p>
-            </div>
-          </div>
-        </section>
 
-        {/* Services */}
-        <section className="py-16 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Services</h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                We coordinate pathways for surgical services in Antalya, Turkey
-              </p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-6">
-              {services.map((service) => (
-                <Link key={service.title} href={service.href}>
-                  <Card variant="bordered" className="h-full hover:shadow-md transition-shadow cursor-pointer">
-                    <CardContent className="py-6">
-                      <div className="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center text-primary-600 mb-4">
-                        {service.icon}
-                      </div>
-                      <div className="flex items-start justify-between gap-2 mb-2">
-                        <h3 className="text-lg font-bold text-gray-900">{service.title}</h3>
-                        {service.badge && (
-                          <Badge variant="success" size="sm">{service.badge}</Badge>
-                        )}
-                      </div>
-                      <p className="text-gray-600 text-sm">{service.description}</p>
-                    </CardContent>
-                  </Card>
-                </Link>
-              ))}
-            </div>
-            <div className="text-center mt-8">
-              <Link href="/services">
-                <Button variant="outline">View All Services</Button>
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* How It Works */}
-        <section className="py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">How It Works</h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                A simple, transparent process that keeps you in control
-              </p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              {steps.map((step) => (
-                <div key={step.number} className="text-center">
-                  <div className="w-12 h-12 bg-primary-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
-                    {step.number}
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">{step.title}</h3>
-                  <p className="text-gray-600 text-sm">{step.description}</p>
+              {/* Cancer Surgery */}
+              <div className="bg-white rounded-2xl p-8 border border-gray-200 text-center hover:shadow-lg transition-shadow relative">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                  <span 
+                    className="inline-block px-3 py-1 text-xs font-semibold rounded-full"
+                    style={{ backgroundColor: '#DCFCE7', color: '#166534' }}
+                  >
+                    Free Second Opinion
+                  </span>
                 </div>
-              ))}
-            </div>
-            <div className="text-center mt-8">
-              <Link href="/how-it-works">
-                <Button variant="outline">Learn More</Button>
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* Second Opinion Banner */}
-        <section className="py-12 bg-success-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-success-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <svg className="w-6 h-6 text-success-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <div 
+                  className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 mt-4"
+                  style={{ backgroundColor: '#F0F7FA' }}
+                >
+                  <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#1B4965' }}>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                   </svg>
                 </div>
-                <div>
-                  <h2 className="text-lg font-bold text-success-900">Free Second Opinion</h2>
-                  <p className="text-success-700">
-                    For Cancer and General Surgery cases, get a free professional review of your diagnosis. No cost, no obligation, no travel required.
-                  </p>
-                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  Cancer Surgery
+                </h3>
+                <p className="text-gray-600 mb-4 text-sm">
+                  Oncological surgical procedures with multidisciplinary teams and 
+                  modern treatment approaches.
+                </p>
+                <ul className="text-sm text-gray-500 space-y-1 mb-6">
+                  <li>GI Cancer Surgery</li>
+                  <li>Breast Oncology</li>
+                  <li>Thoracic Surgery</li>
+                  <li>Urological Oncology</li>
+                </ul>
+                <Link href="/services#cancer">
+                  <Button variant="ghost" size="sm">
+                    View All Procedures
+                  </Button>
+                </Link>
               </div>
-              <Link href="/apply?type=second-opinion">
-                <Button variant="success">Request Free Second Opinion</Button>
+
+              {/* General Surgery */}
+              <div className="bg-white rounded-2xl p-8 border border-gray-200 text-center hover:shadow-lg transition-shadow relative">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                  <span 
+                    className="inline-block px-3 py-1 text-xs font-semibold rounded-full"
+                    style={{ backgroundColor: '#DCFCE7', color: '#166534' }}
+                  >
+                    Free Second Opinion
+                  </span>
+                </div>
+                <div 
+                  className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 mt-4"
+                  style={{ backgroundColor: '#F0F7FA' }}
+                >
+                  <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#1B4965' }}>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  General Surgery
+                </h3>
+                <p className="text-gray-600 mb-4 text-sm">
+                  Non-oncological surgical procedures including gallbladder, hernia, 
+                  and bariatric surgery.
+                </p>
+                <ul className="text-sm text-gray-500 space-y-1 mb-6">
+                  <li>Gallbladder Surgery</li>
+                  <li>Hernia Repair</li>
+                  <li>Bariatric Surgery</li>
+                  <li>Proctology</li>
+                </ul>
+                <Link href="/services#general">
+                  <Button variant="ghost" size="sm">
+                    View All Procedures
+                  </Button>
+                </Link>
+              </div>
+            </div>
+
+            <div className="text-center mt-12">
+              <Link href="/services">
+                <Button variant="outline" size="lg">
+                  View All Services
+                </Button>
               </Link>
             </div>
           </div>
         </section>
 
-        {/* Stats */}
-        <section className="py-16 bg-gray-50">
+        {/* ============================================
+            HOW IT WORKS
+            ============================================ */}
+        <section className="py-20" style={{ backgroundColor: '#F9FAFB' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid md:grid-cols-3 gap-8 text-center">
-              {stats.map((stat, idx) => (
-                <div key={idx}>
-                  <p className="text-4xl font-bold text-primary-600 mb-2">{stat.value}</p>
-                  <p className="text-gray-600">{stat.label}</p>
+            <div className="text-center max-w-2xl mx-auto mb-16">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                How It Works
+              </h2>
+              <p className="text-gray-600">
+                A simple, transparent process that keeps you in control every step of the way.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 relative">
+              {/* Connector line */}
+              <div className="hidden md:block absolute top-12 left-[20%] right-[20%] h-0.5 bg-gray-200" />
+
+              {/* Step 1 */}
+              <div className="text-center relative">
+                <div 
+                  className="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl font-bold text-white relative z-10"
+                  style={{ backgroundColor: '#1B4965' }}
+                >
+                  1
                 </div>
-              ))}
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Submit Request</h3>
+                <p className="text-gray-600">
+                  Fill out our simple form with your healthcare needs. It's free and takes just a few minutes.
+                </p>
+              </div>
+
+              {/* Step 2 */}
+              <div className="text-center relative">
+                <div 
+                  className="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl font-bold text-white relative z-10"
+                  style={{ backgroundColor: '#1B4965' }}
+                >
+                  2
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Receive Quotes</h3>
+                <p className="text-gray-600">
+                  Clinics review your request and send quotes directly to you within 48-72 hours.
+                </p>
+              </div>
+
+              {/* Step 3 */}
+              <div className="text-center relative">
+                <div 
+                  className="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl font-bold text-white relative z-10"
+                  style={{ backgroundColor: '#1B4965' }}
+                >
+                  3
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Compare & Decide</h3>
+                <p className="text-gray-600">
+                  You compare options, ask questions, and make your own informed decision. No pressure.
+                </p>
+              </div>
+            </div>
+
+            <div className="text-center mt-12">
+              <Link href="/how-it-works">
+                <Button variant="outline" size="lg">
+                  Learn More
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
 
-        {/* Why Antalya */}
-        <section className="py-16 bg-white">
+        {/* ============================================
+            WHY ANTALYA
+            ============================================ */}
+        <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Why Antalya?</h2>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <svg className="w-5 h-5 text-primary-600 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <p className="text-gray-600">Shorter wait times compared to NHS elective procedures</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <svg className="w-5 h-5 text-primary-600 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <p className="text-gray-600">Competitive value compared to UK private care</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <svg className="w-5 h-5 text-primary-600 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <p className="text-gray-600">Internationally accredited hospitals and experienced specialists</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <svg className="w-5 h-5 text-primary-600 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <p className="text-gray-600">Direct flights from UK cities (under 4 hours)</p>
-                  </div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                  Why Antalya?
+                </h2>
+                <p className="text-gray-600 mb-8">
+                  Turkey welcomes over 1.2 million international patients annually. 
+                  Antalya, as the world's 8th most visited city, combines healthcare 
+                  excellence with established tourism infrastructure.
+                </p>
+
+                <div className="space-y-4 mb-8">
+                  {[
+                    "Shorter wait times compared to NHS elective procedures",
+                    "Competitive value compared to UK private care",
+                    "Internationally accredited hospitals (50+ JCI-accredited)",
+                    "Direct flights from UK cities (under 4 hours)"
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex items-start gap-3">
+                      <svg className="w-5 h-5 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#1B4965' }}>
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <p className="text-gray-600">{item}</p>
+                    </div>
+                  ))}
                 </div>
-                <div className="mt-6">
-                  <Link href="/why-antalya">
-                    <Button variant="outline">Learn More</Button>
-                  </Link>
-                </div>
+
+                <Link href="/why-antalya">
+                  <Button variant="outline">
+                    Learn More About Antalya
+                  </Button>
+                </Link>
               </div>
-              <div className="bg-gray-100 rounded-2xl p-8">
-                <p className="text-gray-500 text-sm mb-4">Real Statistics</p>
-                <p className="text-gray-900 mb-6">
-                  Turkey welcomes over <span className="font-bold text-primary-600">1.2 million</span> international patients annually for healthcare services. Antalya, as the world's 8th most visited city, combines healthcare excellence with established tourism infrastructure.
-                </p>
-                <p className="text-sm text-gray-500">
-                  Sources: Turkish Ministry of Health, Global Tourism Statistics
-                </p>
+
+              {/* Stats */}
+              <div className="grid grid-cols-2 gap-6">
+                {[
+                  { value: "1.2M+", label: "International patients visit Turkey annually" },
+                  { value: "50+", label: "JCI-accredited hospitals in Turkey" },
+                  { value: "4hrs", label: "Direct flight from London to Antalya" },
+                  { value: "8th", label: "Most visited city in the world" }
+                ].map((stat, idx) => (
+                  <div 
+                    key={idx}
+                    className="rounded-2xl p-8 text-center"
+                    style={{ backgroundColor: '#F0F7FA' }}
+                  >
+                    <div className="text-4xl font-bold mb-2" style={{ color: '#1B4965' }}>{stat.value}</div>
+                    <p className="text-gray-600 text-sm">{stat.label}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </section>
 
-        {/* Trust */}
-        <section className="py-16 bg-gray-50">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <Card variant="bordered" className="bg-white">
-              <CardContent className="py-8 text-center">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">Our Commitment to Transparency</h2>
-                <p className="text-gray-600 mb-6">
-                  MrClinc is a coordination platform, not a medical provider or agency. We connect you with healthcare providers - you make all the decisions. Our service is free for patients, and we never pressure you to proceed.
-                </p>
-                <div className="flex flex-wrap justify-center gap-4">
-                  <Badge variant="secondary">Coordination Only</Badge>
-                  <Badge variant="secondary">You Control Decisions</Badge>
-                  <Badge variant="secondary">Free for Patients</Badge>
-                  <Badge variant="secondary">No Pressure</Badge>
-                </div>
-              </CardContent>
-            </Card>
+        {/* ============================================
+            WHAT WE DO / DON'T DO
+            ============================================ */}
+        <section className="py-20" style={{ backgroundColor: '#F9FAFB' }}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-2xl mx-auto mb-16">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Our Role: Coordination, Not Provision
+              </h2>
+              <p className="text-gray-600">
+                We believe in transparency. Here's exactly what we do and don't do.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {/* What We Do */}
+              <div className="bg-white rounded-2xl p-8 border border-gray-100">
+                <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
+                  <span 
+                    className="w-8 h-8 rounded-lg flex items-center justify-center"
+                    style={{ backgroundColor: '#DCFCE7' }}
+                  >
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#16A34A' }}>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </span>
+                  What We Do
+                </h3>
+                <ul className="space-y-4">
+                  {[
+                    "Coordinate introductions between you and clinics",
+                    "Facilitate communication throughout the process",
+                    "Ensure you receive quotes directly from clinics",
+                    "Offer free second opinion for cancer & surgery patients"
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <svg className="w-5 h-5 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#22C55E' }}>
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span className="text-gray-600">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* What We Don't Do */}
+              <div className="bg-white rounded-2xl p-8 border border-gray-100">
+                <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
+                  <span 
+                    className="w-8 h-8 rounded-lg flex items-center justify-center"
+                    style={{ backgroundColor: '#FEE2E2' }}
+                  >
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#DC2626' }}>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </span>
+                  What We Don't Do
+                </h3>
+                <ul className="space-y-4">
+                  {[
+                    "Provide medical advice or treatment",
+                    "Choose or recommend specific clinics",
+                    "Set prices or negotiate on your behalf",
+                    "Make decisions for you - that's your control"
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <svg className="w-5 h-5 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#EF4444' }}>
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                      <span className="text-gray-600">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="py-16 bg-primary-900 text-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold mb-4">Ready to Explore Your Options?</h2>
-            <p className="text-primary-100 mb-8 text-lg">
-              Submit your request today. It's free, and there's no obligation to proceed.
+        {/* ============================================
+            BOTTOM CTA
+            ============================================ */}
+        <section className="py-20" style={{ backgroundColor: '#1B4965' }}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl font-bold text-white mb-4">
+              Ready to Explore Your Options?
+            </h2>
+            <p className="mb-8 max-w-2xl mx-auto" style={{ color: '#B3DDED' }}>
+              Submit a free, no-obligation request. Receive quotes directly from clinics. 
+              You compare, you decide, you control.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/apply">
-                <Button variant="accent" size="lg">Submit Request</Button>
+                <Button variant="accent" size="lg">
+                  Submit Your Request
+                </Button>
               </Link>
-              <Link href="/contact">
-                <Button variant="outline" size="lg" className="border-white text-white hover:bg-primary-800">
-                  Contact Us
+              <Link href="/services#second-opinion">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  style={{ borderColor: 'rgba(255,255,255,0.3)', color: 'white' }}
+                >
+                  Free Second Opinion
                 </Button>
               </Link>
             </div>

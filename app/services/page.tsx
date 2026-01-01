@@ -2,8 +2,6 @@ import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
-import { Card, CardContent } from "@/components/ui/Card";
-import { Badge } from "@/components/ui/Badge";
 
 const services = [
   {
@@ -16,20 +14,10 @@ const services = [
       </svg>
     ),
     categories: [
-      {
-        name: "Face",
-        procedures: ["Rhinoplasty", "Blepharoplasty", "Facelift", "Otoplasty", "Chin Surgery"]
-      },
-      {
-        name: "Breast",
-        procedures: ["Breast Augmentation", "Breast Lift", "Breast Reduction", "Gynecomastia"]
-      },
-      {
-        name: "Body",
-        procedures: ["Liposuction", "Tummy Tuck", "BBL", "Arm Lift", "Thigh Lift"]
-      }
+      { name: "Face", procedures: ["Rhinoplasty", "Blepharoplasty", "Facelift", "Otoplasty", "Chin Surgery"] },
+      { name: "Breast", procedures: ["Breast Augmentation", "Breast Lift", "Breast Reduction", "Gynecomastia"] },
+      { name: "Body", procedures: ["Liposuction", "Tummy Tuck", "BBL", "Arm Lift", "Thigh Lift"] }
     ],
-    earnings: "€250-€350",
     freeConsultation: true,
     freeSecondOpinion: false
   },
@@ -43,20 +31,10 @@ const services = [
       </svg>
     ),
     categories: [
-      {
-        name: "Gastrointestinal",
-        procedures: ["Esophageal", "Gastric", "Colon", "Rectal", "Liver", "Pancreatic"]
-      },
-      {
-        name: "Thoracic",
-        procedures: ["Lung Cancer", "Mediastinal Tumors"]
-      },
-      {
-        name: "Other",
-        procedures: ["Breast Cancer", "Gynecological", "Urological", "Thyroid", "Melanoma"]
-      }
+      { name: "Gastrointestinal", procedures: ["Esophageal", "Gastric", "Colon", "Rectal", "Liver", "Pancreatic"] },
+      { name: "Thoracic", procedures: ["Lung Cancer", "Mediastinal Tumors"] },
+      { name: "Other", procedures: ["Breast Cancer", "Gynecological", "Urological", "Thyroid", "Melanoma"] }
     ],
-    earnings: "€1,000-€1,200",
     freeConsultation: true,
     freeSecondOpinion: true
   },
@@ -70,20 +48,10 @@ const services = [
       </svg>
     ),
     categories: [
-      {
-        name: "Hepatobiliary",
-        procedures: ["Gallbladder Surgery", "Bile Duct Surgery", "Liver Cysts"]
-      },
-      {
-        name: "Hernia",
-        procedures: ["Inguinal Hernia", "Umbilical Hernia", "Incisional Hernia"]
-      },
-      {
-        name: "Other",
-        procedures: ["Appendectomy", "Hemorrhoids", "Bariatric Surgery", "Thyroid (Benign)"]
-      }
+      { name: "Hepatobiliary", procedures: ["Gallbladder Surgery", "Bile Duct Surgery", "Liver Cysts"] },
+      { name: "Hernia", procedures: ["Inguinal Hernia", "Umbilical Hernia", "Incisional Hernia"] },
+      { name: "Other", procedures: ["Appendectomy", "Hemorrhoids", "Bariatric Surgery", "Thyroid (Benign)"] }
     ],
-    earnings: "€1,000-€1,200",
     freeConsultation: true,
     freeSecondOpinion: true
   }
@@ -93,13 +61,13 @@ export default function ServicesPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-gray-50">
+      <main className="min-h-screen" style={{ backgroundColor: '#F9FAFB' }}>
         {/* Hero */}
-        <section className="bg-primary-900 text-white py-16">
+        <section className="py-16" style={{ backgroundColor: '#1B4965' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl">
-              <h1 className="text-4xl font-bold mb-4">Our Services</h1>
-              <p className="text-xl text-primary-100">
+              <h1 className="text-4xl font-bold mb-4 text-white">Our Services</h1>
+              <p className="text-xl" style={{ color: '#B3DDED' }}>
                 MrClinc coordinates pathways for surgical services in Antalya. Submit your request and receive quotes directly from qualified healthcare providers.
               </p>
             </div>
@@ -107,18 +75,21 @@ export default function ServicesPage() {
         </section>
 
         {/* Second Opinion Banner */}
-        <section id="second-opinion" className="bg-success-50 border-b border-success-200">
+        <section id="second-opinion" style={{ backgroundColor: '#DCFCE7', borderBottom: '1px solid #BBF7D0' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-success-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <svg className="w-6 h-6 text-success-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div 
+                  className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                  style={{ backgroundColor: '#BBF7D0' }}
+                >
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#166534' }}>
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
                 <div>
-                  <h2 className="text-lg font-bold text-success-900">Free Second Opinion</h2>
-                  <p className="text-success-700">
+                  <h2 className="text-lg font-bold" style={{ color: '#14532D' }}>Free Second Opinion</h2>
+                  <p style={{ color: '#166534' }}>
                     For Cancer and General Surgery cases, get a free professional review of your diagnosis. No cost, no obligation, no travel required.
                   </p>
                 </div>
@@ -135,11 +106,14 @@ export default function ServicesPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="space-y-12">
               {services.map((service) => (
-                <Card key={service.id} id={service.id} variant="bordered" className="overflow-hidden">
-                  <div className="bg-gray-50 px-6 py-4 border-b border-gray-200">
+                <div key={service.id} id={service.id} className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                  <div className="px-6 py-4 border-b border-gray-200" style={{ backgroundColor: '#F9FAFB' }}>
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                       <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center text-primary-600">
+                        <div 
+                          className="w-12 h-12 rounded-xl flex items-center justify-center"
+                          style={{ backgroundColor: '#F0F7FA', color: '#1B4965' }}
+                        >
                           {service.icon}
                         </div>
                         <div>
@@ -149,15 +123,25 @@ export default function ServicesPage() {
                       </div>
                       <div className="flex flex-wrap gap-2">
                         {service.freeConsultation && (
-                          <Badge variant="primary">Free Consultation</Badge>
+                          <span 
+                            className="inline-block px-3 py-1 text-xs font-semibold rounded-full"
+                            style={{ backgroundColor: '#F0F7FA', color: '#1B4965' }}
+                          >
+                            Free Consultation
+                          </span>
                         )}
                         {service.freeSecondOpinion && (
-                          <Badge variant="success">Free Second Opinion</Badge>
+                          <span 
+                            className="inline-block px-3 py-1 text-xs font-semibold rounded-full"
+                            style={{ backgroundColor: '#DCFCE7', color: '#166534' }}
+                          >
+                            Free Second Opinion
+                          </span>
                         )}
                       </div>
                     </div>
                   </div>
-                  <CardContent className="py-6">
+                  <div className="p-6">
                     <div className="grid md:grid-cols-3 gap-6">
                       {service.categories.map((category, idx) => (
                         <div key={idx}>
@@ -165,7 +149,7 @@ export default function ServicesPage() {
                           <ul className="space-y-2">
                             {category.procedures.map((procedure, pIdx) => (
                               <li key={pIdx} className="flex items-center gap-2 text-sm text-gray-600">
-                                <svg className="w-4 h-4 text-primary-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#1B4965' }}>
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                 </svg>
                                 {procedure}
@@ -183,8 +167,8 @@ export default function ServicesPage() {
                         <Button variant="primary">Submit Request</Button>
                       </Link>
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
@@ -195,27 +179,22 @@ export default function ServicesPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-bold text-gray-900 text-center mb-12">How It Works</h2>
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-primary-600 font-bold">1</span>
+              {[
+                { num: "1", title: "Submit Request", desc: "Fill out our simple form with your service needs and basic information" },
+                { num: "2", title: "Receive Quotes", desc: "Clinics review your request and send quotes directly to you within 48-72 hours" },
+                { num: "3", title: "Compare & Decide", desc: "Compare options, ask questions, and make your own informed decision" }
+              ].map((step, idx) => (
+                <div key={idx} className="text-center">
+                  <div 
+                    className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"
+                    style={{ backgroundColor: '#F0F7FA' }}
+                  >
+                    <span className="font-bold" style={{ color: '#1B4965' }}>{step.num}</span>
+                  </div>
+                  <h3 className="font-semibold text-gray-900 mb-2">{step.title}</h3>
+                  <p className="text-gray-600 text-sm">{step.desc}</p>
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Submit Request</h3>
-                <p className="text-gray-600 text-sm">Fill out our simple form with your service needs and basic information</p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-primary-600 font-bold">2</span>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Receive Quotes</h3>
-                <p className="text-gray-600 text-sm">Clinics review your request and send quotes directly to you within 48-72 hours</p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-primary-600 font-bold">3</span>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Compare & Decide</h3>
-                <p className="text-gray-600 text-sm">Compare options, ask questions, and make your own informed decision</p>
-              </div>
+              ))}
             </div>
             <div className="text-center mt-8">
               <Link href="/how-it-works">
@@ -226,10 +205,10 @@ export default function ServicesPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-16 bg-primary-900 text-white">
+        <section className="py-16" style={{ backgroundColor: '#1B4965' }}>
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-2xl font-bold mb-4">Ready to Get Started?</h2>
-            <p className="text-primary-100 mb-8">
+            <h2 className="text-2xl font-bold mb-4 text-white">Ready to Get Started?</h2>
+            <p className="mb-8" style={{ color: '#B3DDED' }}>
               Submit your request today. It's free, with no obligation.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -237,7 +216,11 @@ export default function ServicesPage() {
                 <Button variant="accent" size="lg">Submit Request</Button>
               </Link>
               <Link href="/faq">
-                <Button variant="outline" size="lg" className="border-white text-white hover:bg-primary-800">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  style={{ borderColor: 'rgba(255,255,255,0.3)', color: 'white' }}
+                >
                   View FAQ
                 </Button>
               </Link>
