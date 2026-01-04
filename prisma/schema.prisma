@@ -1,0 +1,552 @@
+// MrClinc Admin Panel - Prisma Schema
+// Based on ADMIN PANEL SPEC v1.0
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// ADMIN USERS & AUTH
+// ============================================
+
+enum AdminRole {
+  SUPER_ADMIN
+  OPS_ADMIN
+  FINANCE_ADMIN
+  AUDITOR
+}
+
+model AdminUser {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  passwordHash  String
+  name          String
+  role          AdminRole
+  isActive      Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  lastLoginAt   DateTime?
+
+  sessions      AdminSession[]
+  auditLogs     AuditLog[]
+  caseStatusChanges CaseStatusHistory[]
+  escalationsCreated Escalation[] @relation("EscalationCreatedBy")
+  escalationsResolved Escalation[] @relation("EscalationResolvedBy")
+  contactLogs   ContactLog[]
+}
+
+model AdminSession {
+  id          String    @id @default(cuid())
+  adminUserId String
+  token       String    @unique
+  expiresAt   DateTime
+  createdAt   DateTime  @default(now())
+  ipAddress   String?
+  userAgent   String?
+
+  adminUser   AdminUser @relation(fields: [adminUserId], references: [id], onDelete: Cascade)
+}
+
+// ============================================
+// CASE (REQUEST / PATHWAY) - Spec 4.1
+// ============================================
+
+enum CaseStatus {
+  received
+  under_review
+  channel_contacted
+  information_ready
+  next_steps_shared
+  confirmed
+  completed
+  closed
+}
+
+enum AssignmentMode {
+  DIRECT_PD_CODE
+  POOL
+  MANUAL_ADMIN
+}
+
+enum EscalationLevel {
+  NONE
+  L1
+  L2
+  L3
+}
+
+enum EscalationReason {
+  SLA_BREACH
+  PATIENT_COMPLAINT
+  PD_ISSUE
+  CHANNEL_ISSUE
+  PROCESS_DELAY
+  OTHER
+}
+
+enum ClosedReason {
+  PATIENT_STOPPED_RESPONDING
+  REQUEST_WITHDRAWN
+  MISMATCH
+  OUT_OF_SCOPE
+  DUPLICATE
+  COMPLETED_SUCCESSFULLY
+  OTHER
+}
+
+enum PreferredContact {
+  whatsapp
+  phone
+  email
+}
+
+model Case {
+  id              String    @id @default(cuid())
+  trackingCode    String    @unique // TRK-XXXXX
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  // Patient info (operasyonel - tıbbi doküman YOK)
+  patientName     String
+  patientEmail    String
+  patientPhone    String?
+  preferredContact PreferredContact @default(whatsapp)
+  patientAge      Int?
+  patientCity     String?
+  patientCountry  String
+
+  // Service info
+  mainCategory        String    // Medical Surgery / Aesthetic Surgery
+  medicalSubType      String?   // Cancer Surgery / General Surgery
+  cancerSystem        String?
+  aestheticSubCategory String?  // For Men / For Women
+  aestheticProcedure  String?
+  generalCondition    String?
+  description         String?   // Free text - tıbbi doküman DEĞİL
+
+  // PD Code from application
+  pdCodeProvided  String?
+
+  // Consents
+  consent1        Boolean   @default(false)
+  consent1At      DateTime?
+  consent2        Boolean   @default(false)
+  consent2At      DateTime?
+  consent3        Boolean   @default(false)
+  consent3At      DateTime?
+
+  // Assignment
+  assignmentMode  AssignmentMode?
+  assignedPdId    String?
+  assignedAt      DateTime?
+  poolCity        String?
+  claimedAt       DateTime?
+
+  // Clinical channel/provider (internal)
+  channelId           String?
+  providerId          String?
+  channelContactedAt  DateTime?
+  handoverAt          DateTime?
+
+  // Document flow checkboxes (operasyonel işaretleme - doküman saklanmaz)
+  clinicRequestedDocsAt   DateTime?
+  patientSentDocsAt       DateTime?
+  clinicConfirmedDocsAt   DateTime?
+
+  // Status
+  status          CaseStatus  @default(received)
+  escalationLevel EscalationLevel @default(NONE)
+
+  // Closure
+  closedReason    ClosedReason?
+  closedNote      String?
+  closedById      String?
+  closedAt        DateTime?
+
+  // Relations
+  assignedPd      PD?       @relation(fields: [assignedPdId], references: [id])
+  channel         ClinicalChannel? @relation(fields: [channelId], references: [id])
+  provider        Provider? @relation(fields: [providerId], references: [id])
+  
+  statusHistory   CaseStatusHistory[]
+  escalations     Escalation[]
+  contactLogs     ContactLog[]
+  earningsLedger  EarningsLedger[]
+
+  @@index([status])
+  @@index([trackingCode])
+  @@index([assignedPdId])
+  @@index([poolCity])
+}
+
+model CaseStatusHistory {
+  id          String      @id @default(cuid())
+  caseId      String
+  status      CaseStatus
+  changedById String?
+  changedAt   DateTime    @default(now())
+  note        String?     // Internal note
+  source      String      // ADMIN / PD / SYSTEM
+
+  case        Case        @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  changedBy   AdminUser?  @relation(fields: [changedById], references: [id])
+
+  @@index([caseId])
+}
+
+model Escalation {
+  id              String    @id @default(cuid())
+  caseId          String
+  createdAt       DateTime  @default(now())
+  createdById     String
+  level           EscalationLevel
+  reason          EscalationReason
+  summary         String    // Internal summary
+  resolvedAt      DateTime?
+  resolutionNote  String?
+  resolvedById    String?
+
+  case            Case      @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  createdBy       AdminUser @relation("EscalationCreatedBy", fields: [createdById], references: [id])
+  resolvedBy      AdminUser? @relation("EscalationResolvedBy", fields: [resolvedById], references: [id])
+
+  @@index([caseId])
+}
+
+// ============================================
+// PD (PATHWAY DEVELOPER) - Spec 4.2
+// ============================================
+
+enum PDStatus {
+  ACTIVE
+  PAUSED
+  REMOVED
+}
+
+enum VerificationState {
+  PENDING
+  VERIFIED
+  REJECTED
+}
+
+model PD {
+  id                String    @id @default(cuid())
+  pdCode            String    @unique // PD-XXXXX
+  status            PDStatus  @default(ACTIVE)
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  // Profile
+  fullName          String
+  profession        String?   // Health professional
+  country           String
+  city              String    // Pool basis
+  languages         String[]
+  notes             String?   // Internal notes
+
+  // Verification
+  verificationState VerificationState @default(PENDING)
+
+  // Contact (internal)
+  email             String?
+  phone             String?
+
+  // Auth
+  passwordHash      String?   // For PD login
+
+  // Session tracking
+  lastLoginAt       DateTime?
+  lastActiveAt      DateTime?
+
+  // Performance counters (updated by system)
+  casesClaimedCount   Int     @default(0)
+  casesActiveCount    Int     @default(0)
+  casesCompletedCount Int     @default(0)
+
+  // Relations
+  cases             Case[]
+  complianceFlags   ComplianceFlag[]
+  earningsLedger    EarningsLedger[]
+  pools             PoolPD[]
+  sessions          PDSession[]
+
+  @@index([city])
+  @@index([status])
+}
+
+model PDSession {
+  id          String    @id @default(cuid())
+  pdId        String
+  token       String    @unique
+  expiresAt   DateTime
+  createdAt   DateTime  @default(now())
+  ipAddress   String?
+  userAgent   String?
+
+  pd          PD        @relation(fields: [pdId], references: [id], onDelete: Cascade)
+}
+
+model ComplianceFlag {
+  id          String    @id @default(cuid())
+  pdId        String
+  flagType    String    // e.g., "asked_for_payment", "clinic_recommendation_attempt"
+  severity    String    // LOW / MEDIUM / HIGH
+  reason      String
+  createdAt   DateTime  @default(now())
+  resolvedAt  DateTime?
+  resolutionNote String?
+
+  pd          PD        @relation(fields: [pdId], references: [id], onDelete: Cascade)
+
+  @@index([pdId])
+}
+
+// ============================================
+// POOL (CITY POOLS) - Spec 4.3
+// ============================================
+
+model Pool {
+  id              String    @id @default(cuid())
+  city            String    @unique
+  queuePolicy     String    @default("FIRST_CLAIM")
+  isActive        Boolean   @default(true)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  // SLA rules (JSON for flexibility)
+  slaRulesJson    String?
+
+  pds             PoolPD[]
+}
+
+model PoolPD {
+  id        String    @id @default(cuid())
+  poolId    String
+  pdId      String
+  joinedAt  DateTime  @default(now())
+  isActive  Boolean   @default(true)
+
+  pool      Pool      @relation(fields: [poolId], references: [id], onDelete: Cascade)
+  pd        PD        @relation(fields: [pdId], references: [id], onDelete: Cascade)
+
+  @@unique([poolId, pdId])
+}
+
+// ============================================
+// CLINICAL CHANNELS / PROVIDERS - Spec 4.4
+// ============================================
+
+model ClinicalChannel {
+  id                String    @id @default(cuid())
+  name              String    // Internal label
+  city              String
+  serviceCoverage   String[]  // Aesthetic, Cancer Surgery, General Surgery
+  status            String    @default("ACTIVE") // ACTIVE / PAUSED
+  contactMethods    String?   // JSON: email/phone/secure channel (internal)
+  notes             String?   // Internal
+  responseSlaHours  Int?      // Ops SLA
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  providers         Provider[]
+  cases             Case[]
+}
+
+model Provider {
+  id            String    @id @default(cuid())
+  displayName   String    // Internal
+  specialties   String[]
+  channelId     String
+  notes         String?
+  status        String    @default("ACTIVE")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  channel       ClinicalChannel @relation(fields: [channelId], references: [id], onDelete: Cascade)
+  cases         Case[]
+}
+
+// ============================================
+// CONTACT LOG - Spec 4.5
+// ============================================
+
+enum ContactDirection {
+  OUTBOUND
+  INBOUND
+}
+
+enum ContactMethod {
+  PHONE
+  EMAIL
+  WHATSAPP
+  OTHER
+}
+
+model ContactLog {
+  id          String    @id @default(cuid())
+  caseId      String
+  actorType   String    // ADMIN / PD / PROVIDER
+  actorId     String?
+  direction   ContactDirection
+  method      ContactMethod
+  summary     String    // Internal, short - tıbbi içerik YOK
+  createdAt   DateTime  @default(now())
+
+  case        Case      @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  adminActor  AdminUser? @relation(fields: [actorId], references: [id])
+
+  @@index([caseId])
+}
+
+// ============================================
+// AUDIT LOG - Spec 4.6
+// ============================================
+
+model AuditLog {
+  id          String    @id @default(cuid())
+  actorId     String?
+  actorType   String    // ADMIN / PD / SYSTEM
+  action      String    // CASE_STATUS_CHANGED, PD_CREATED, etc.
+  entityType  String
+  entityId    String
+  beforeJson  String?   // JSON diff
+  afterJson   String?   // JSON diff
+  createdAt   DateTime  @default(now())
+  ipAddress   String?
+
+  actor       AdminUser? @relation(fields: [actorId], references: [id])
+
+  @@index([entityType, entityId])
+  @@index([actorId])
+  @@index([createdAt])
+}
+
+// ============================================
+// EARNINGS - Spec 4.2 (Earnings section)
+// ============================================
+
+enum PayoutStatus {
+  UNPAID
+  SCHEDULED
+  PAID
+  ADJUSTED
+}
+
+model EarningsLedger {
+  id            String    @id @default(cuid())
+  pdId          String
+  caseId        String
+  serviceType   String
+  baseAmount    Decimal   @db.Decimal(10, 2)
+  bonusAmount   Decimal   @default(0) @db.Decimal(10, 2)
+  currency      String    @default("EUR")
+  earnedAt      DateTime  // Completed trigger
+  payoutStatus  PayoutStatus @default(UNPAID)
+  payoutBatchId String?
+  notes         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  pd            PD        @relation(fields: [pdId], references: [id])
+  case          Case      @relation(fields: [caseId], references: [id])
+  payoutBatch   PayoutBatch? @relation(fields: [payoutBatchId], references: [id])
+
+  @@index([pdId])
+  @@index([payoutStatus])
+}
+
+model PayoutBatch {
+  id          String    @id @default(cuid())
+  dateFrom    DateTime
+  dateTo      DateTime
+  status      String    @default("PENDING") // PENDING / PAID
+  totalAmount Decimal   @db.Decimal(10, 2)
+  currency    String    @default("EUR")
+  paidAt      DateTime?
+  notes       String?
+  createdAt   DateTime  @default(now())
+
+  earnings    EarningsLedger[]
+}
+
+// ============================================
+// PD APPLICATION - Onboarding Form
+// ============================================
+
+enum PDApplicationStatus {
+  PENDING
+  REVIEWED
+  APPROVED
+  REJECTED
+}
+
+model PDApplication {
+  id                    String    @id @default(cuid())
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  status                PDApplicationStatus @default(PENDING)
+
+  // 1. Basic Information
+  fullName              String
+  country               String
+  city                  String
+  email                 String
+  phone                 String
+  preferredContact      String    // whatsapp / email
+
+  // 2. Professional Background
+  currentProfession     String
+  organisationType      String    // organisation / independent
+  yearsExperience       String
+  professionalActivity  String    @db.Text
+
+  // 3. Network & Channel Context
+  networkTypes          String[]  // patient_support, intl_advisors, expat_orgs, corporate_wellness, other
+  networkTypesOther     String?
+  networkCountries      String[]
+  introductionApproach  String    @db.Text
+
+  // 4. Availability & Engagement
+  availabilityLevel     String    // occasional, regular, consistent
+  workingMode           String    // remote, hybrid
+
+  // 5. Compliance Acknowledgements (all must be true)
+  ackFreelance          Boolean   @default(false)
+  ackNoSales            Boolean   @default(false)
+  ackNotClinic          Boolean   @default(false)
+  ackTraceable          Boolean   @default(false)
+  ackCaseBased          Boolean   @default(false)
+
+  // 6. Declaration
+  declareAccurate       Boolean   @default(false)
+  declareAcceptFramework Boolean  @default(false)
+  consentDataProcessing Boolean   @default(false)
+  consentTimestamp      DateTime?
+  signatureName         String
+  signatureDate         DateTime
+
+  // Admin review
+  reviewedById          String?
+  reviewedAt            DateTime?
+  reviewNotes           String?
+
+  @@index([status])
+  @@index([email])
+}
+
+// ============================================
+// SETTINGS (CONFIG) - Spec 4.7
+// ============================================
+
+model SystemSetting {
+  id        String    @id @default(cuid())
+  key       String    @unique
+  value     String    // JSON
+  updatedAt DateTime  @updatedAt
+  updatedBy String?
+}

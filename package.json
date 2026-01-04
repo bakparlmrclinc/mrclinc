@@ -1,0 +1,55 @@
+{
+  "name": "mrclinc",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+<<<<<<< HEAD
+    "build": "prisma generate && next build",
+    "start": "next start",
+    "lint": "eslint",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
+    "db:seed": "npx tsx prisma/seed.ts",
+    "db:reset": "prisma migrate reset",
+    "db:studio": "prisma studio"
+  },
+  "prisma": {
+    "seed": "npx tsx prisma/seed.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "bcryptjs": "^3.0.3",
+    "next": "16.1.1",
+    "prisma": "^5.22.0",
+=======
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "next": "16.1.1",
+>>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
+<<<<<<< HEAD
+    "@types/bcryptjs": "^2.4.6",
+=======
+>>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.1",
+    "tailwindcss": "^4",
+<<<<<<< HEAD
+    "tsx": "^4.21.0",
+=======
+>>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
+    "typescript": "^5"
+  }
+}
