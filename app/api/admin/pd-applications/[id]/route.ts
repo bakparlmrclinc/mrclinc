@@ -155,6 +155,38 @@ export async function POST(
       },
     });
 
+    // Auto-create Pool for city if not exists, then add PD to Pool
+    let poolInfo = null;
+    if (application.city) {
+      // Check if pool exists for this city
+      let pool = await prisma.pool.findUnique({
+        where: { city: application.city },
+      });
+
+      // Create pool if not exists
+      if (!pool) {
+        pool = await prisma.pool.create({
+          data: {
+            city: application.city,
+            queuePolicy: "FIRST_CLAIM",
+            isActive: true,
+          },
+        });
+        poolInfo = { created: true, city: pool.city };
+      } else {
+        poolInfo = { created: false, city: pool.city };
+      }
+
+      // Add PD to pool
+      await prisma.poolPD.create({
+        data: {
+          poolId: pool.id,
+          pdId: pdUser.id,
+          isActive: true,
+        },
+      });
+    }
+
     return NextResponse.json({
       success: true,
       pdUser: {
@@ -164,6 +196,7 @@ export async function POST(
         pdCode: pdUser.pdCode,
       },
       tempPassword, // Admin'e gösterilecek, PD'ye iletilmek üzere
+      pool: poolInfo,
       message: "PD account created successfully. Please share the temporary password with the PD.",
     });
   } catch (error) {
