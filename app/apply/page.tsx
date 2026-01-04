@@ -8,7 +8,6 @@ import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 
-<<<<<<< HEAD
 type MainCategory = "aesthetic" | "medical" | "";
 type MedicalSubType = "cancer" | "general" | "";
 type PreferredContact = "whatsapp" | "phone" | "email";
@@ -28,31 +27,17 @@ interface FormData {
   email: string;
   phone: string;
   preferredContact: PreferredContact;
-=======
-type ServiceType = "aesthetic" | "cancer" | "general" | "second-opinion";
-
-interface FormData {
-  serviceType: ServiceType | "";
-  subCategory: string;
-  name: string;
-  email: string;
-  phone: string;
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
   age: string;
   city: string;
   country: string;
   description: string;
   pdCode: string;
-<<<<<<< HEAD
   // Consents
-=======
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
   consent1: boolean;
   consent2: boolean;
   consent3: boolean;
 }
 
-<<<<<<< HEAD
 // LOCKED SERVICE STRUCTURE - DO NOT MODIFY
 const aestheticSubCategories = [
   "Face",
@@ -179,23 +164,6 @@ function ApplyForm() {
     age: "",
     city: "",
     country: "UK",
-=======
-function ApplyForm() {
-  const searchParams = useSearchParams();
-  const [step, setStep] = useState(1);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [trackingCode, setTrackingCode] = useState("");
-
-  const [formData, setFormData] = useState<FormData>({
-    serviceType: "",
-    subCategory: "",
-    name: "",
-    email: "",
-    phone: "",
-    age: "",
-    city: "",
-    country: "United Kingdom",
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
     description: "",
     pdCode: "",
     consent1: false,
@@ -203,7 +171,6 @@ function ApplyForm() {
     consent3: false,
   });
 
-<<<<<<< HEAD
   // Get available cities for selected country
   const availableCities = citiesByCountry[formData.country] || citiesByCountry["OTHER"];
 
@@ -307,48 +274,6 @@ function ApplyForm() {
     return false;
   };
 
-=======
-  useEffect(() => {
-    const service = searchParams.get("service");
-    const type = searchParams.get("type");
-    if (type === "second-opinion") {
-      setFormData(prev => ({ ...prev, serviceType: "second-opinion" }));
-    } else if (service) {
-      setFormData(prev => ({ ...prev, serviceType: service as ServiceType }));
-    }
-  }, [searchParams]);
-
-  const serviceOptions = [
-    { value: "aesthetic", label: "Aesthetic Surgery", description: "Face, breast, body procedures" },
-    { value: "cancer", label: "Cancer Surgery", description: "Oncological surgical procedures" },
-    { value: "general", label: "General Surgery", description: "Non-oncological surgical procedures" },
-    { value: "second-opinion", label: "Free Second Opinion", description: "Cancer or General Surgery review" },
-  ];
-
-  const subCategories: Record<ServiceType, string[]> = {
-    aesthetic: ["Rhinoplasty", "Breast Augmentation", "Liposuction", "Tummy Tuck", "Facelift", "Other"],
-    cancer: ["Gastrointestinal", "Breast", "Lung", "Thyroid", "Urological", "Gynecological", "Other"],
-    general: ["Gallbladder", "Hernia", "Appendix", "Bariatric", "Hemorrhoids", "Other"],
-    "second-opinion": ["Cancer Surgery Review", "General Surgery Review"],
-  };
-
-  const handleServiceSelect = (value: ServiceType) => {
-    setFormData({ ...formData, serviceType: value, subCategory: "" });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    const code = `TRK-${Math.random().toString(36).substring(2, 7).toUpperCase()}`;
-    setTrackingCode(code);
-    setIsSubmitting(false);
-    setStep(4);
-  };
-
-  const canProceedStep1 = formData.serviceType !== "";
-  const canProceedStep2 = formData.subCategory !== "";
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
   const canProceedStep3 = 
     formData.name && 
     formData.email && 
@@ -359,7 +284,6 @@ function ApplyForm() {
     formData.consent2 && 
     formData.consent3;
 
-<<<<<<< HEAD
   const getStepTitle = () => {
     if (step === 1) return "Select Service Category";
     if (step === 2) {
@@ -378,10 +302,6 @@ function ApplyForm() {
 
   // Success view
   if (step === 10) {
-=======
-  // Success view
-  if (step === 4) {
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
     return (
       <div className="max-w-2xl mx-auto px-4 py-12 text-center">
         <div 
@@ -394,11 +314,7 @@ function ApplyForm() {
         </div>
         <h1 className="text-2xl font-bold text-gray-900 mb-4">Request Submitted</h1>
         <p className="text-gray-600 mb-6">
-<<<<<<< HEAD
           Your request has been received. A Pathway Developer will coordinate your request and the healthcare provider will contact you directly.
-=======
-          Your request has been received. Clinics will review and respond within 48-72 hours.
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
         </p>
         
         <div className="bg-white rounded-xl border border-gray-200 p-6 mb-8">
@@ -446,7 +362,6 @@ function ApplyForm() {
         ))}
       </div>
 
-<<<<<<< HEAD
       {/* Step Title */}
       <h1 className="text-2xl font-bold text-gray-900 mb-2 text-center">{getStepTitle()}</h1>
       
@@ -498,39 +413,12 @@ function ApplyForm() {
                 Free Second Opinion
               </span>
             </button>
-=======
-      {/* Step 1: Service Selection */}
-      {step === 1 && (
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900 mb-2 text-center">Select Service</h1>
-          <p className="text-gray-600 text-center mb-8">Choose the type of service you're interested in</p>
-          
-          <div className="grid sm:grid-cols-2 gap-4">
-            {serviceOptions.map((option) => (
-              <button
-                key={option.value}
-                onClick={() => handleServiceSelect(option.value as ServiceType)}
-                className="p-6 rounded-xl text-left transition-all"
-                style={{
-                  border: formData.serviceType === option.value ? '2px solid #1B4965' : '2px solid #E5E7EB',
-                  backgroundColor: formData.serviceType === option.value ? '#F0F7FA' : 'white'
-                }}
-              >
-                <h3 className="font-semibold text-gray-900 mb-1">{option.label}</h3>
-                <p className="text-sm text-gray-600">{option.description}</p>
-              </button>
-            ))}
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
           </div>
 
           <div className="mt-8 flex justify-end">
             <Button
               variant="primary"
-<<<<<<< HEAD
               onClick={() => { setStep(2); setMedicalSubStep("select"); }}
-=======
-              onClick={() => setStep(2)}
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
               disabled={!canProceedStep1}
             >
               Continue
@@ -539,7 +427,6 @@ function ApplyForm() {
         </div>
       )}
 
-<<<<<<< HEAD
       {/* ============================================
           STEP 2: Service-Specific Forms
           ============================================ */}
@@ -667,31 +554,10 @@ function ApplyForm() {
                 }}
               >
                 {condition}
-=======
-      {/* Step 2: Sub-category */}
-      {step === 2 && formData.serviceType && (
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900 mb-2 text-center">Select Category</h1>
-          <p className="text-gray-600 text-center mb-8">Choose the specific area of interest</p>
-          
-          <div className="grid sm:grid-cols-2 gap-3">
-            {subCategories[formData.serviceType].map((sub) => (
-              <button
-                key={sub}
-                onClick={() => setFormData({ ...formData, subCategory: sub })}
-                className="p-4 rounded-xl text-left transition-all"
-                style={{
-                  border: formData.subCategory === sub ? '2px solid #1B4965' : '2px solid #E5E7EB',
-                  backgroundColor: formData.subCategory === sub ? '#F0F7FA' : 'white'
-                }}
-              >
-                {sub}
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
               </button>
             ))}
           </div>
 
-<<<<<<< HEAD
           {/* Info notice */}
           <div 
             className="mt-6 rounded-lg p-4"
@@ -708,14 +574,6 @@ function ApplyForm() {
               variant="primary"
               onClick={() => setStep(3)}
               disabled={!canProceedStep2()}
-=======
-          <div className="mt-8 flex justify-between">
-            <Button variant="outline" onClick={() => setStep(1)}>Back</Button>
-            <Button
-              variant="primary"
-              onClick={() => setStep(3)}
-              disabled={!canProceedStep2}
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
             >
               Continue
             </Button>
@@ -723,7 +581,6 @@ function ApplyForm() {
         </div>
       )}
 
-<<<<<<< HEAD
       {/* STEP 2C - Cancer Surgery Form */}
       {step === 2 && formData.mainCategory === "medical" && formData.medicalSubType === "cancer" && medicalSubStep === "form" && (
         <div>
@@ -773,12 +630,6 @@ function ApplyForm() {
           ============================================ */}
       {step === 3 && (
         <form onSubmit={handleSubmit}>
-=======
-      {/* Step 3: Details & Submit */}
-      {step === 3 && (
-        <form onSubmit={handleSubmit}>
-          <h1 className="text-2xl font-bold text-gray-900 mb-2 text-center">Your Information</h1>
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
           <p className="text-gray-600 text-center mb-8">Provide your details to complete the request</p>
 
           <div className="bg-white rounded-xl border border-gray-200 p-6 space-y-6">
@@ -813,7 +664,6 @@ function ApplyForm() {
                 />
               </div>
               <div>
-<<<<<<< HEAD
                 <label className="block text-sm font-medium text-gray-700 mb-1">Preferred Contact Method *</label>
                 <select
                   value={formData.preferredContact}
@@ -828,8 +678,6 @@ function ApplyForm() {
                 </select>
               </div>
               <div>
-=======
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
                 <label className="block text-sm font-medium text-gray-700 mb-1">Age *</label>
                 <Input
                   type="number"
@@ -842,7 +690,6 @@ function ApplyForm() {
                 />
               </div>
               <div>
-<<<<<<< HEAD
                 <label className="block text-sm font-medium text-gray-700 mb-1">Country *</label>
                 <select
                   value={formData.country}
@@ -870,23 +717,6 @@ function ApplyForm() {
                     <option key={city} value={city}>{city}</option>
                   ))}
                 </select>
-=======
-                <label className="block text-sm font-medium text-gray-700 mb-1">City *</label>
-                <Input
-                  value={formData.city}
-                  onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                  placeholder="London"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Country</label>
-                <Input
-                  value={formData.country}
-                  onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                  placeholder="United Kingdom"
-                />
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
               </div>
             </div>
 
@@ -904,29 +734,19 @@ function ApplyForm() {
               />
             </div>
 
-<<<<<<< HEAD
             {/* PD Code with explanation */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 PD Code <span className="text-gray-400 font-normal">(if provided)</span>
-=======
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                PD Code <span className="text-gray-400 font-normal">(Optional)</span>
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
               </label>
               <Input
                 value={formData.pdCode}
                 onChange={(e) => setFormData({ ...formData, pdCode: e.target.value.toUpperCase() })}
                 placeholder="PD-XXXXX"
               />
-<<<<<<< HEAD
               <p className="text-xs text-gray-500 mt-1">
                 If you don&apos;t have a PD code, a Pathway Developer will be assigned to coordinate your request.
               </p>
-=======
-              <p className="text-xs text-gray-500 mt-1">If a Pathway Developer shared a code with you</p>
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
             </div>
 
             {/* Consents */}
@@ -952,11 +772,7 @@ function ApplyForm() {
                   required
                 />
                 <span className="text-sm text-gray-600">
-<<<<<<< HEAD
                   I understand all medical consultations, documents, and treatment decisions are handled directly by the healthcare provider *
-=======
-                  I understand clinics provide all medical consultations and treatment decisions *
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
                 </span>
               </label>
               <label className="flex items-start gap-3">
@@ -973,34 +789,23 @@ function ApplyForm() {
               </label>
             </div>
 
-<<<<<<< HEAD
             {/* Mandatory Notice */}
-=======
-            {/* Notice */}
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
             <div 
               className="rounded-lg p-4"
               style={{ backgroundColor: '#F0F7FA', border: '1px solid #D9EEF5' }}
             >
               <p className="text-sm" style={{ color: '#1B4965' }}>
-<<<<<<< HEAD
                 <strong>Important:</strong> MrClinc pathway coordination is completely free for patients. No Pathway Developer may request payment. MrClinc does not provide medical advice or make treatment decisions.
-=======
-                <strong>Important:</strong> MrClinc pathway coordination is completely free. No Pathway Developer can request payment from you.
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
               </p>
             </div>
           </div>
 
-<<<<<<< HEAD
           {submitError && (
             <div className="mt-4 bg-error-50 border border-error-200 text-error-700 px-4 py-3 rounded-lg text-sm">
               {submitError}
             </div>
           )}
 
-=======
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
           <div className="mt-8 flex justify-between">
             <Button type="button" variant="outline" onClick={() => setStep(2)}>Back</Button>
             <Button

@@ -54,7 +54,6 @@ export default function PDLoginPage() {
     setIsLoading(true);
     setLoginError("");
 
-<<<<<<< HEAD
     try {
       const response = await fetch("/api/pd/auth", {
         method: "POST",
@@ -76,25 +75,6 @@ export default function PDLoginPage() {
       }
     } catch {
       setLoginError("Connection error. Please try again.");
-=======
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    // Demo login - accept specific codes
-    const validCodes = ["PD-DEMO1", "PD-DEMO2", "PD-TEST1"];
-    const normalizedCode = formData.pdCode.toUpperCase();
-
-    if (validCodes.includes(normalizedCode) && formData.password === "demo123") {
-      // Store in localStorage for demo purposes
-      localStorage.setItem("pdSession", JSON.stringify({
-        code: normalizedCode,
-        name: "Demo User",
-        loggedIn: true,
-      }));
-      router.push("/pd/portal");
-    } else {
-      setLoginError("Invalid PD Code or password. Please try again.");
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
     }
 
     setIsLoading(false);
@@ -106,11 +86,7 @@ export default function PDLoginPage() {
         {/* Logo/Title */}
         <div className="text-center mb-8">
           <Link href="/" className="inline-block">
-<<<<<<< HEAD
             <img src="/images/logo.svg" alt="MrClinc" className="h-[52px] w-auto mx-auto" />
-=======
-            <span className="text-2xl font-bold text-primary-600">MrClinc</span>
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
           </Link>
           <p className="text-gray-600 mt-2">Pathway Developer Portal</p>
         </div>
@@ -153,11 +129,7 @@ export default function PDLoginPage() {
                 type="submit"
                 variant="primary"
                 className="w-full"
-<<<<<<< HEAD
                 isLoading={isLoading}
-=======
-                loading={isLoading}
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
                 disabled={isLoading}
               >
                 {isLoading ? "Signing in..." : "Sign In"}
@@ -166,31 +138,15 @@ export default function PDLoginPage() {
 
             <div className="mt-6 pt-6 border-t border-gray-200">
               <p className="text-sm text-gray-600 text-center">
-<<<<<<< HEAD
                 Need help accessing your account?{" "}
                 <Link href="/contact" className="text-primary-600 hover:underline">
                   Contact support
-=======
-                First time logging in?{" "}
-                <Link href="/pd/setup" className="text-primary-600 hover:underline">
-                  Set up your password
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
                 </Link>
               </p>
             </div>
           </CardContent>
         </Card>
 
-<<<<<<< HEAD
-=======
-        {/* Demo hint - remove in production */}
-        <div className="mt-4 p-4 bg-gray-100 rounded-lg border border-gray-200">
-          <p className="text-xs text-gray-500 text-center">
-            Demo: Use PD-DEMO1 with password "demo123"
-          </p>
-        </div>
-
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
         {/* Back link */}
         <div className="mt-6 text-center">
           <Link href="/pd" className="text-sm text-gray-600 hover:text-primary-600">

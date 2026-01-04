@@ -10,15 +10,11 @@ export default function ContactPage() {
   const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-<<<<<<< HEAD
   const [error, setError] = useState("");
-=======
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-<<<<<<< HEAD
     setError("");
 
     try {
@@ -42,11 +38,6 @@ export default function ContactPage() {
     }
 
     setIsSubmitting(false);
-=======
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    setIsSubmitting(false);
-    setSubmitted(true);
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
   };
 
   return (
@@ -57,11 +48,7 @@ export default function ContactPage() {
         <section className="py-12" style={{ backgroundColor: '#1B4965' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h1 className="text-3xl font-bold mb-2 text-white">Contact Us</h1>
-<<<<<<< HEAD
             <p style={{ color: '#B3DDED' }}>We&apos;re here to answer your questions about our coordination services</p>
-=======
-            <p style={{ color: '#B3DDED' }}>We're here to answer your questions about our coordination services</p>
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
           </div>
         </section>
 
@@ -81,11 +68,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="font-medium text-gray-900">Email</p>
-<<<<<<< HEAD
                       <a href="mailto:info@mrclinc.com" className="text-gray-600 hover:text-primary-600">info@mrclinc.com</a>
-=======
-                      <p className="text-gray-600">info@mrclinc.com</p>
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
@@ -129,7 +112,6 @@ export default function ContactPage() {
                       </svg>
                     </div>
                     <h3 className="text-lg font-bold text-gray-900 mb-2">Message Sent</h3>
-<<<<<<< HEAD
                     <p className="text-gray-600">We&apos;ll get back to you within 24-48 hours.</p>
                   </div>
                 ) : (
@@ -186,29 +168,6 @@ export default function ContactPage() {
                     <Button type="submit" variant="primary" className="w-full" isLoading={isSubmitting}>
                       {isSubmitting ? "Sending..." : "Send Message"}
                     </Button>
-=======
-                    <p className="text-gray-600">We'll get back to you within 24-48 hours.</p>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Name *</label>
-                      <Input value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} placeholder="Your name" required />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
-                      <Input type="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} placeholder="your@email.com" required />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Subject *</label>
-                      <Input value={formData.subject} onChange={(e) => setFormData({ ...formData, subject: e.target.value })} placeholder="What is this about?" required />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Message *</label>
-                      <textarea value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} rows={4} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent" style={{ '--tw-ring-color': '#1B4965' } as React.CSSProperties} placeholder="Your message..." required />
-                    </div>
-                    <Button type="submit" variant="primary" className="w-full" isLoading={isSubmitting}>Send Message</Button>
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
                   </form>
                 )}
               </div>

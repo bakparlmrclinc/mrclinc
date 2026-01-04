@@ -1,10 +1,6 @@
 "use client";
 
-<<<<<<< HEAD
 import { useState, useEffect, Suspense } from "react";
-=======
-import { useState, Suspense } from "react";
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Header } from "@/components/layout/Header";
@@ -12,7 +8,6 @@ import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 
-<<<<<<< HEAD
 // Status types matching backend (patient-facing only)
 type Status = 
   | "received" 
@@ -68,17 +63,6 @@ function formatDate(isoString: string): string {
     hour: "2-digit",
     minute: "2-digit",
   });
-=======
-type Status = "received" | "processing" | "quotes-sent" | "in-progress" | "completed" | "closed";
-
-interface TrackingResult {
-  code: string;
-  service: string;
-  status: Status;
-  submittedAt: string;
-  lastUpdated: string;
-  timeline: { status: Status; date: string; description: string }[];
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
 }
 
 function TrackForm() {
@@ -89,7 +73,6 @@ function TrackForm() {
   const [result, setResult] = useState<TrackingResult | null>(null);
   const [error, setError] = useState("");
 
-<<<<<<< HEAD
   // Auto-track if code is in URL
   useEffect(() => {
     if (initialCode) {
@@ -120,42 +103,6 @@ function TrackForm() {
     } finally {
       setIsLoading(false);
     }
-=======
-  const handleTrack = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!code.trim()) return;
-    setIsLoading(true);
-    setError("");
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    if (code.toUpperCase().startsWith("TRK-")) {
-      setResult({
-        code: code.toUpperCase(),
-        service: "Aesthetic Surgery - Rhinoplasty",
-        status: "quotes-sent",
-        submittedAt: "2025-12-28 10:30",
-        lastUpdated: "2025-12-30 14:20",
-        timeline: [
-          { status: "received", date: "Dec 28, 10:30", description: "Request received and confirmed" },
-          { status: "processing", date: "Dec 28, 14:00", description: "Request assigned to clinics" },
-          { status: "quotes-sent", date: "Dec 30, 14:20", description: "3 clinics have sent quotes" },
-        ]
-      });
-    } else {
-      setError("Invalid tracking code. Please check and try again.");
-      setResult(null);
-    }
-    setIsLoading(false);
-  };
-
-  const statusLabels: Record<Status, { label: string; color: string; bg: string }> = {
-    "received": { label: "Received", color: "#1B4965", bg: "#F0F7FA" },
-    "processing": { label: "Processing", color: "#1B4965", bg: "#F0F7FA" },
-    "quotes-sent": { label: "Quotes Sent", color: "#166534", bg: "#DCFCE7" },
-    "in-progress": { label: "In Progress", color: "#9A3412", bg: "#FFEDD5" },
-    "completed": { label: "Completed", color: "#166534", bg: "#DCFCE7" },
-    "closed": { label: "Closed", color: "#6B7280", bg: "#F3F4F6" }
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
   };
 
   return (
@@ -177,7 +124,6 @@ function TrackForm() {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
                 <p className="text-sm text-gray-500">Tracking Code</p>
-<<<<<<< HEAD
                 <p className="text-xl font-bold" style={{ color: '#1B4965' }}>{result.trackingCode}</p>
               </div>
               <span 
@@ -188,19 +134,12 @@ function TrackForm() {
                 }}
               >
                 {getStatusStyle(result.status).label}
-=======
-                <p className="text-xl font-bold" style={{ color: '#1B4965' }}>{result.code}</p>
-              </div>
-              <span className="inline-block px-3 py-1 text-sm font-medium rounded-full" style={{ backgroundColor: statusLabels[result.status].bg, color: statusLabels[result.status].color }}>
-                {statusLabels[result.status].label}
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
               </span>
             </div>
           </div>
           <div className="p-6">
             <div className="mb-6">
               <p className="text-sm text-gray-500 mb-1">Service</p>
-<<<<<<< HEAD
               <p className="text-gray-900">
                 {result.category}
                 {result.serviceType && ` - ${result.serviceType}`}
@@ -209,13 +148,6 @@ function TrackForm() {
             <div className="mb-6">
               <p className="text-sm text-gray-500 mb-1">Submitted</p>
               <p className="text-gray-900">{formatDate(result.submittedAt)}</p>
-=======
-              <p className="text-gray-900">{result.service}</p>
-            </div>
-            <div className="mb-6">
-              <p className="text-sm text-gray-500 mb-1">Submitted</p>
-              <p className="text-gray-900">{result.submittedAt}</p>
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
             </div>
             <div>
               <p className="text-sm font-medium text-gray-900 mb-4">Timeline</p>
@@ -227,11 +159,7 @@ function TrackForm() {
                       {idx < result.timeline.length - 1 && <div className="w-0.5 flex-1 mt-1" style={{ backgroundColor: '#D9EEF5' }} />}
                     </div>
                     <div className="flex-1 pb-4">
-<<<<<<< HEAD
                       <p className="font-medium text-gray-900">{item.status}</p>
-=======
-                      <p className="font-medium text-gray-900">{statusLabels[item.status].label}</p>
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
                       <p className="text-sm text-gray-500">{item.date}</p>
                       <p className="text-sm text-gray-600 mt-1">{item.description}</p>
                     </div>

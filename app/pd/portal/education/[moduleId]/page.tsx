@@ -25,11 +25,7 @@ interface ModuleContent {
   passScore: number;
 }
 
-<<<<<<< HEAD
 // Module content data - REVISED per MD specification
-=======
-// Module content data
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
 const moduleData: Record<string, ModuleContent> = {
   fundamentals: {
     id: "fundamentals",
@@ -38,51 +34,31 @@ const moduleData: Record<string, ModuleContent> = {
       {
         title: "What is a Pathway Developer?",
         content: [
-<<<<<<< HEAD
           "A Pathway Developer (PD) is an independent professional who creates visibility for MrClinc within their own professional channels, ensures requests enter the platform correctly, and supports patients with platform and process-related questions (excluding any medical or treatment-related topics).",
           "What a PD is NOT: NOT an employee of MrClinc, NOT a sales agent or affiliate, NOT a medical advisor, NOT a travel companion, NOT a broker or referrer.",
           "Key Terminology — Use These: 'Pathway Developer' (not Referrer/Agent), 'Earnings' (not Commission), 'Request' (not Referral/Lead), 'Case' (not Lead/Client), 'Coordinate' (not Sell/Generate), 'Patient' (not Customer/Client), 'Coordination' (not Facilitation of treatment).",
-=======
-          "A Pathway Developer (PD) is an independent professional who creates patient flow through their own channels, ensures requests enter the platform correctly, and supports patients passively (no travel accompaniment).",
-          "PD is NOT: An employee of MrClinc, a sales agent or affiliate, a medical advisor, or a travel companion.",
-          "Key terminology: 'Pathway Developer' (not 'referrer'), 'Earnings' (not 'commission'), 'Request' (not 'referral'), 'Case' (not 'lead').",
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
         ],
       },
       {
         title: "PD's Five Core Responsibilities",
         content: [
-<<<<<<< HEAD
           "1. Build & Manage Your Own Channel - You choose where to create visibility (GP practices, pharmacies, community spaces, etc.). Platform does NOT dictate your channel strategy. You manage your professional relationships and approach.",
           "2. Be the Entry Point - Explain what MrClinc is (and what it is NOT), direct patients to the application form, ensure the request contains sufficient information to proceed within the platform.",
           "3. Ensure Good Case Start - Minimum information collected correctly, patient understands the process, escalate to platform if something is stuck.",
           "4. Follow Platform Standards - NO medical advice, NO clinic selection or recommendation, NO promises or guarantees, NO bargaining or price negotiation, NO pressure tactics.",
           "5. Record & Transparency - Log cases in platform, report obstacles or issues, maintain trackable, documentable flow.",
-=======
-          "1. Build & Manage Own Channel - You choose where to create visibility (GP practices, pharmacies, etc.). Platform does NOT dictate your channel strategy.",
-          "2. Be the Entry Gate - Explain what MrClinc is (and is NOT), direct patients to application form, ensure case becomes usable.",
-          "3. Ensure Good Case Start - Minimum info collected, documents gathered if required, escalate to platform if stuck.",
-          "4. Follow Platform Standards - NO medical advice, NO clinic selection judgement, NO promises or bargaining, NO pressure tactics.",
-          "5. Record & Transparency - Log cases in platform, report obstacles, maintain trackable flow.",
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
         ],
       },
       {
         title: "What PDs Do NOT Do (Boundaries)",
         content: [
-<<<<<<< HEAD
           "PDs do NOT: Provide medical advice or diagnosis, recommend specific clinics or doctors, access patient medical records, access clinic quotes or pricing through the platform, make promises about outcomes or results, negotiate prices with clinics, handle patient payments.",
           "Why These Boundaries Exist: Legal (only licensed professionals can give medical advice), Ethical (patient must control all decisions), Quality (platform maintains consistent standards), GDPR (patient data privacy must be protected), Trust (boundaries protect both patient and PD).",
-=======
-          "PDs do NOT: Provide medical advice or diagnosis, recommend specific clinics, access patient medical records, see clinic quotes/pricing (unless patient shares), accompany patients on travel, make promises about outcomes, or negotiate prices.",
-          "Why these boundaries exist: Legal (only licensed professionals can give medical advice), Ethical (patient must control all decisions), Quality (platform maintains standards), GDPR (patient data privacy must be protected).",
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
         ],
       },
       {
         title: "The MrClinc Model",
         content: [
-<<<<<<< HEAD
           "MrClinc is a coordination platform that: Connects patients with clinical channels, coordinates the introduction process, facilitates communication flow, ensures consent-based workflow, tracks cases with reference codes (TRK-XXXXX).",
           "MrClinc does NOT: Provide medical treatment, set prices or negotiate, make clinical decisions, choose 'best' clinic for patient, handle medical documents, guarantee outcomes.",
           "Your Role as PD: Help patient ACCESS the platform, ensure quality case entry, support patient with process questions, escalate issues when needed, NOT make medical/clinical decisions.",
@@ -93,11 +69,6 @@ const moduleData: Record<string, ModuleContent> = {
         content: [
           "Patient Flow Through MrClinc: Patient Contact → Request Submitted → Case Prepared → Clinical Channel Connected → Clinic Contacts Patient → Patient Decides",
           "Where PD is Involved: ✅ Initial contact and explanation, ✅ Guiding to request form, ✅ Answering process questions, ✅ Escalating delays or issues. ❌ NOT involved in clinical communication, ❌ NOT involved in pricing/quotes, ❌ NOT involved in medical decisions.",
-=======
-          "MrClinc is a coordination platform that connects patients with clinics, coordinates the introduction process, facilitates communication, and ensures consent-based workflow.",
-          "MrClinc does NOT: Provide medical treatment, set prices or negotiate, make clinical decisions, or choose 'best' clinic for patient.",
-          "Your role as PD: Help patient ACCESS the platform, ensure quality case entry, support patient with process questions, NOT make medical/clinical decisions.",
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
         ],
       },
     ],
@@ -107,20 +78,12 @@ const moduleData: Record<string, ModuleContent> = {
         question: "A Pathway Developer is best described as:",
         options: [
           { label: "A sales agent earning commissions on medical referrals", value: "a" },
-<<<<<<< HEAD
           { label: "An independent professional creating visibility for MrClinc and ensuring quality case entry", value: "b" },
-=======
-          { label: "An independent professional creating patient flow and ensuring quality case entry", value: "b" },
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
           { label: "A travel companion helping patients navigate Antalya", value: "c" },
           { label: "A medical advisor helping patients choose the best clinic", value: "d" },
         ],
         correctAnswer: "b",
-<<<<<<< HEAD
         explanation: "PDs are independent professionals who create visibility and ensure cases enter correctly. They do NOT sell, accompany, or advise medically.",
-=======
-        explanation: "PDs are independent professionals who create flow and ensure cases enter correctly. They do NOT sell, accompany, or advise medically.",
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
       },
       {
         id: "q2",
@@ -138,7 +101,6 @@ const moduleData: Record<string, ModuleContent> = {
         id: "q3",
         question: "A patient asks: 'Which clinic should I choose?' You should:",
         options: [
-<<<<<<< HEAD
           { label: "Recommend the clinic with the best earnings rate", value: "a" },
           { label: "Say: 'Clinic A is the best in Antalya'", value: "b" },
           { label: "Say: 'You'll receive information from clinics. You compare and decide. I can't make that choice for you.'", value: "c" },
@@ -146,15 +108,6 @@ const moduleData: Record<string, ModuleContent> = {
         ],
         correctAnswer: "c",
         explanation: "PDs NEVER recommend specific clinics. Patient compares and decides. This is a firm boundary.",
-=======
-          { label: "Recommend the clinic with the best commission rate", value: "a" },
-          { label: "Say: 'Clinic A is the best in Antalya'", value: "b" },
-          { label: "Say: 'You'll receive quotes from clinics. You compare and decide. I can't make that choice for you.'", value: "c" },
-          { label: "Ask your MrClinc contact which clinic to recommend", value: "d" },
-        ],
-        correctAnswer: "c",
-        explanation: "PDs NEVER recommend specific clinics. Patient compares quotes and decides. This is a firm boundary.",
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
       },
       {
         id: "q4",
@@ -173,11 +126,7 @@ const moduleData: Record<string, ModuleContent> = {
         question: "A patient shows you their lab results and asks: 'Is this cancer?' You should:",
         options: [
           { label: "Review the results and give your medical opinion", value: "a" },
-<<<<<<< HEAD
           { label: "Say: 'I'm not qualified to interpret results. Please discuss with your doctor or request a Second Opinion through the platform.'", value: "b" },
-=======
-          { label: "Say: 'I'm not medically qualified to interpret results. Please discuss with your doctor or request a Second Opinion through the platform.'", value: "b" },
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
           { label: "Google the results and explain what you find", value: "c" },
           { label: "Ask a doctor friend and relay their opinion", value: "d" },
         ],
@@ -190,11 +139,7 @@ const moduleData: Record<string, ModuleContent> = {
         options: [
           { label: "A medical tourism agency that finds the best deals", value: "a" },
           { label: "A hospital in Antalya providing treatments", value: "b" },
-<<<<<<< HEAD
           { label: "A coordination platform connecting patients with clinical channels", value: "c" },
-=======
-          { label: "A coordination platform connecting patients with providers", value: "c" },
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
           { label: "A price comparison website for medical procedures", value: "d" },
         ],
         correctAnswer: "c",
@@ -202,22 +147,14 @@ const moduleData: Record<string, ModuleContent> = {
       },
       {
         id: "q7",
-<<<<<<< HEAD
         question: "Can you access clinic quotes sent to your patients?",
         options: [
           { label: "Yes, I have access to all quotes in my PD portal", value: "a" },
           { label: "No, PDs do not access clinic quotes or pricing through the platform", value: "b" },
-=======
-        question: "Can you see the clinic quotes sent to your patients?",
-        options: [
-          { label: "Yes, I have access to all quotes in my PD portal", value: "a" },
-          { label: "No, unless the patient voluntarily shares them with me", value: "b" },
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
           { label: "Yes, but only after the patient accepts a quote", value: "c" },
           { label: "Yes, I need to see quotes to help patients decide", value: "d" },
         ],
         correctAnswer: "b",
-<<<<<<< HEAD
         explanation: "PDs do NOT access quotes/pricing through the platform. This is patient-controlled data.",
       },
       {
@@ -307,12 +244,6 @@ const moduleData: Record<string, ModuleContent> = {
     questions: [
       {
         id: "q1",
-=======
-        explanation: "PDs do NOT see quotes/pricing. This is patient-controlled data. Patient may share if they choose.",
-      },
-      {
-        id: "q8",
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
         question: "'Win-win' in PD work means:",
         options: [
           { label: "Both patient and clinic are happy", value: "a" },
@@ -324,7 +255,6 @@ const moduleData: Record<string, ModuleContent> = {
         explanation: "'Win-win' = conflict-free targeting. The professional's business continues even if patient proceeds.",
       },
       {
-<<<<<<< HEAD
         id: "q2",
         question: "Which profession is a GREEN LIGHT target?",
         options: [
@@ -419,173 +349,6 @@ const moduleData: Record<string, ModuleContent> = {
         ],
         correctAnswer: "b",
         explanation: "Patients mentioning the location = successful passive channel. No active selling required.",
-=======
-        id: "q9",
-        question: "A patient asks for medical advice about recovery after surgery. You should:",
-        options: [
-          { label: "Share what you've learned from other patients", value: "a" },
-          { label: "Give basic advice since recovery isn't as sensitive as diagnosis", value: "b" },
-          { label: "Say: 'I can't advise medically. The clinic will guide you, or escalate questions to MrClinc team.'", value: "c" },
-          { label: "Research online and share helpful articles", value: "d" },
-        ],
-        correctAnswer: "c",
-        explanation: "NO medical advice, ever. This includes recovery, side effects, complications. Always redirect.",
-      },
-      {
-        id: "q10",
-        question: "What does 'escalation' mean for a PD?",
-        options: [
-          { label: "Increasing your commission rate", value: "a" },
-          { label: "Flagging an issue to the platform team when you're stuck", value: "b" },
-          { label: "Promoting the platform more aggressively", value: "c" },
-          { label: "Upgrading a patient to a premium service", value: "d" },
-        ],
-        correctAnswer: "b",
-        explanation: "Escalation = reporting obstacles, stuck cases, or issues you can't resolve to the platform team.",
-      },
-    ],
-    passScore: 80,
-  },
-  "target-hints": {
-    id: "target-hints",
-    title: "Target Hints Masterclass",
-    sections: [
-      {
-        title: "Why Conflict-Free Targeting Matters",
-        content: [
-          "If you target a professional whose business COMPETES with the service you're promoting, they will NOT want to help you. Worse, it's unethical.",
-          "Example of CONFLICT: Targeting a hair transplant surgeon in the UK to refer patients to Turkey. You're asking them to give away their own business.",
-          "Example of WIN-WIN: Targeting a barber to refer hair loss patients. Barber can't do surgery. Barber's business (haircuts) continues even if patient gets transplant.",
-          "The Principle: Target professions whose core business continues even if the patient proceeds with the medical service.",
-        ],
-      },
-      {
-        title: "How to Approach Target Professions",
-        content: [
-          "Step 1: Permission First - NEVER leave materials without permission. Speak to owner/manager.",
-          "Step 2: Explain Win-Win - Make it clear their business is NOT threatened. 'Your service continues. This is for cases you can't handle.'",
-          "Step 3: Leave Information and Go - Don't be pushy. Leave card, QR code, or link. Check back occasionally.",
-          "Step 4: Log and Track - Record which locations you've approached, note permission granted/denied.",
-        ],
-      },
-      {
-        title: "What NOT to Do (Red Lines)",
-        content: [
-          "DO NOT: Leave materials without permission (trespassing/littering), target competitors, use aggressive tactics, approach patients directly without professional's knowledge.",
-          "DO NOT: Make medical claims ('100% success rate'), promise outcomes ('You'll definitely get great results'), target vulnerable groups aggressively.",
-          "If a professional says NO, respect it immediately. Do not return or pressure.",
-        ],
-      },
-    ],
-    questions: [
-      {
-        id: "q1",
-        question: "'Conflict-free targeting' means:",
-        options: [
-          { label: "Avoiding arguments with professionals you approach", value: "a" },
-          { label: "Targeting professions whose business continues even if patient proceeds", value: "b" },
-          { label: "Only targeting professionals you already know", value: "c" },
-          { label: "Avoiding competitive markets", value: "d" },
-        ],
-        correctAnswer: "b",
-        explanation: "Conflict-free means their core business is unaffected by the patient's medical decision.",
-      },
-      {
-        id: "q2",
-        question: "You want to approach a barber shop. What's the FIRST step?",
-        options: [
-          { label: "Leave information cards when no one is looking", value: "a" },
-          { label: "Talk to a few customers and give them flyers", value: "b" },
-          { label: "Speak to the owner/manager and ask permission to leave materials", value: "c" },
-          { label: "Post information on their social media page", value: "d" },
-        ],
-        correctAnswer: "c",
-        explanation: "Always get permission first from the owner/manager before leaving any materials.",
-      },
-      {
-        id: "q3",
-        question: "Why is targeting a UK hair transplant surgeon a BAD idea?",
-        options: [
-          { label: "They're too busy to help", value: "a" },
-          { label: "It's direct competition - you're asking them to give away their own business", value: "b" },
-          { label: "They don't know about Turkish clinics", value: "c" },
-          { label: "UK surgeons can't refer internationally", value: "d" },
-        ],
-        correctAnswer: "b",
-        explanation: "This creates a direct conflict of interest. They would be undermining their own business.",
-      },
-      {
-        id: "q4",
-        question: "A pharmacist asks: 'Why would I help you? Won't this hurt my business?' You respond:",
-        options: [
-          { label: "'You'll earn a commission if you help'", value: "a" },
-          { label: "'Your product sales continue. This is for cases where products alone aren't enough. We're complementary, not competitive.'", value: "b" },
-          { label: "'It won't hurt you, trust me'", value: "c" },
-          { label: "'I'll send customers to you in return'", value: "d" },
-        ],
-        correctAnswer: "b",
-        explanation: "Explain the win-win clearly - their business continues, this is complementary.",
-      },
-      {
-        id: "q5",
-        question: "A barber says: 'I'm not comfortable with this.' You should:",
-        options: [
-          { label: "Explain more aggressively until they understand", value: "a" },
-          { label: "Leave materials anyway; they might change their mind", value: "b" },
-          { label: "Respect their decision, thank them politely, and leave", value: "c" },
-          { label: "Ask to speak to another staff member instead", value: "d" },
-        ],
-        correctAnswer: "c",
-        explanation: "Respect 'no' immediately. Don't pressure or circumvent their decision.",
-      },
-      {
-        id: "q6",
-        question: "Which approach is appropriate for cancer patients?",
-        options: [
-          { label: "Approach patients directly in waiting rooms", value: "a" },
-          { label: "Speak to oncology nurses about offering free Second Opinion information", value: "b" },
-          { label: "Post ads in cancer support group forums without permission", value: "c" },
-          { label: "Tell patients 'Turkish clinics are better than NHS'", value: "d" },
-        ],
-        correctAnswer: "b",
-        explanation: "Extra sensitivity required for cancer. Work through professionals, offer FREE Second Opinion, never claim superiority.",
-      },
-      {
-        id: "q7",
-        question: "Target Hints are:",
-        options: [
-          { label: "Mandatory requirements for where you must create flow", value: "a" },
-          { label: "Advisory suggestions of conflict-free professions; you choose your own strategy", value: "b" },
-          { label: "A list of professions that have already agreed to work with MrClinc", value: "c" },
-          { label: "The only legal way to promote MrClinc", value: "d" },
-        ],
-        correctAnswer: "b",
-        explanation: "Target Hints are advisory suggestions, not mandates. You build your own channel strategy.",
-      },
-      {
-        id: "q8",
-        question: "You've been given permission to leave cards at a GP practice. When should you return?",
-        options: [
-          { label: "Every day to check if cards are gone", value: "a" },
-          { label: "Monthly to restock and briefly check in (if permission was for ongoing)", value: "b" },
-          { label: "Never, just leave cards once", value: "c" },
-          { label: "Whenever you feel like it", value: "d" },
-        ],
-        correctAnswer: "b",
-        explanation: "Maintain relationships with reasonable, agreed-upon check-ins - not too frequent, not abandoned.",
-      },
-      {
-        id: "q9",
-        question: "You discover a UK private clinic that does hair transplants. Should you approach them?",
-        options: [
-          { label: "Yes, approach them - they might refer overflow cases", value: "a" },
-          { label: "No, this is direct competition - violates conflict-free principle", value: "b" },
-          { label: "Yes, but offer them a partnership deal", value: "c" },
-          { label: "Yes, approach anonymously", value: "d" },
-        ],
-        correctAnswer: "b",
-        explanation: "Never target direct competitors. Their business would be negatively affected.",
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
       },
       {
         id: "q10",
@@ -607,7 +370,6 @@ const moduleData: Record<string, ModuleContent> = {
     title: "Second Opinion Strategy",
     sections: [
       {
-<<<<<<< HEAD
         title: "What is the Free Second Opinion?",
         content: [
           "The Free Second Opinion (FSO) is available for oncology and general surgery cases. It allows patients to receive a clinical evaluation from specialist clinics at no cost.",
@@ -622,34 +384,20 @@ const moduleData: Record<string, ModuleContent> = {
           "Natural Conversation Starter: Easy to introduce without seeming 'sales-y', builds immediate trust.",
           "High Conversion: 40-60% vs 10-20% for cold inquiries, because patient already engaged with process.",
           "Key Points to Emphasize: FREE (no hidden fees), NO obligation, PROFESSIONAL review by specialist clinicians, FAST turnaround (typically 5-7 days).",
-=======
-        title: "Why Second Opinion is Powerful",
-        content: [
-          "Second Opinion is a FREE professional medical review of a patient's diagnosis or treatment plan by qualified specialists. Available for Cancer Surgery and General Surgery ONLY.",
-          "Why it's powerful: Zero risk for patient (completely free, no obligation), natural conversation starter, builds immediate trust, and has a high conversion rate (40-60% vs 10-20% for cold inquiries).",
-          "The process: Patient submits request, clinic reviews documents (5-7 days), patient receives written report. NO travel required, NO commitment needed.",
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
         ],
       },
       {
         title: "How to Introduce Second Opinion",
         content: [
-<<<<<<< HEAD
           "Framework: Identify candidates (cancer patients, general surgery patients, those with scheduling concerns), explain the service clearly, emphasize FREE and NO obligation, guide to platform.",
           "Example Approach: 'MrClinc offers free second opinions from specialist clinics. Completely free, no obligation. The clinic reviews your case within about a week and shares their evaluation. Many patients find it helpful for peace of mind.'",
           "What to Say: 'Some patients find second opinions helpful for clarity or peace of mind. It's an option if you'd like.' What NOT to Say: 'You NEED to get this!' or 'NHS is overwhelmed.'",
-=======
-          "Framework: Identify candidates (cancer patients, general surgery patients, NHS waiters), explain the service clearly, emphasize FREE and NO obligation, guide to platform.",
-          "Example approach: 'MrClinc offers free second opinions from experienced specialists. Completely free, no obligation. Review happens within 5-7 days and you receive a written report. Many patients find it helpful for peace of mind.'",
-          "Key points to emphasize: FREE (no hidden fees), NO obligation, PROFESSIONAL review, FAST turnaround.",
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
         ],
       },
       {
         title: "Special Sensitivity for Cancer Patients",
         content: [
           "Cancer patients are in a vulnerable state. Extra care is required.",
-<<<<<<< HEAD
           "DO: Be empathetic and patient, use phrases like 'some patients find helpful', emphasize 'no pressure', offer information and step back, acknowledge their trust in their current doctors is valid.",
           "DO NOT: Use urgency tactics ('act fast!'), criticize NHS or their current care, make promises ('they'll find better treatment'), push hard or follow up repeatedly.",
           "If they say 'I trust my NHS doctor': 'That's absolutely fine. Trust in your doctor is important. If you ever change your mind, the option exists.'",
@@ -660,10 +408,6 @@ const moduleData: Record<string, ModuleContent> = {
         content: [
           "Escalate to Platform When: Patient has complex medical questions you can't answer, patient is very distressed, patient reports problem or delay with clinic, you're unsure how to proceed.",
           "Remember: FSO is about providing options, not pushing decisions. Your role is to make patients aware of the service, not to convince them to use it.",
-=======
-          "DO: Be empathetic and patient, use phrases like 'some patients find helpful', emphasize 'no pressure', offer information and step back.",
-          "DO NOT: Use urgency tactics ('act fast!'), criticize NHS, make promises ('they'll find better treatment'), push hard.",
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
         ],
       },
     ],
@@ -776,10 +520,7 @@ const moduleData: Record<string, ModuleContent> = {
         content: [
           "Personal data includes: name, email, phone, medical information, location - any identifiable information.",
           "PD's GDPR Responsibilities: Minimal data collection (only what's necessary), secure storage, patient consent required, no sharing without permission.",
-<<<<<<< HEAD
           "Use platform messaging whenever possible; avoid storing or sharing patient data in personal messaging apps.",
-=======
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
           "Don't discuss Patient A with Patient B. Don't post patient stories without explicit written permission.",
         ],
       },
@@ -787,16 +528,11 @@ const moduleData: Record<string, ModuleContent> = {
         title: "Medical Advice Boundaries (Hard Lines)",
         content: [
           "YOU CANNOT: Diagnose, recommend treatment, interpret results, predict outcomes, advise on medications, compare treatments.",
-<<<<<<< HEAD
           "YOU CAN: Provide platform information, explain process, offer Second Opinion pathway, escalate questions to team.",
-=======
-          "YOU CAN: Provide platform information, explain process, offer Second Opinion, escalate questions to team.",
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
           "Even 'helpful' medical advice is crossing the line. Always redirect to qualified professionals.",
         ],
       },
       {
-<<<<<<< HEAD
         title: "Financial Boundaries",
         content: [
           "PDs do NOT: Discuss pricing or quotes with patients (unless patient voluntarily shares), negotiate prices with clinics, collect any payments from patients, promise specific costs or savings.",
@@ -808,12 +544,6 @@ const moduleData: Record<string, ModuleContent> = {
         content: [
           "Patient shares full medical records: 'I don't need to see these. Keep them secure and share only with licensed professionals through the platform.'",
           "Patient asks you to negotiate price: 'I don't negotiate prices. That's between you and the clinic directly.'",
-=======
-        title: "Ethical Scenarios",
-        content: [
-          "Patient shares full medical records: 'I don't need to see these. Keep them secure and share only with licensed professionals.'",
-          "Patient asks you to negotiate price: 'I don't negotiate prices. That's between you and the clinic.'",
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
           "Patient wants you to choose clinic: 'I can't make that choice for you. You compare based on your priorities.'",
           "Another patient asks about a previous patient: 'I can't discuss other patients due to privacy rules.'",
         ],
@@ -898,11 +628,7 @@ const moduleData: Record<string, ModuleContent> = {
         options: [
           { label: "Yes, if you found it on their website", value: "a" },
           { label: "Yes, if another patient told you", value: "b" },
-<<<<<<< HEAD
           { label: "No, PDs don't share clinical data or statistics - clinics provide that directly", value: "c" },
-=======
-          { label: "No, unless you have verified clinical data (which you're not authorized to share)", value: "c" },
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
           { label: "Yes, if it seems accurate", value: "d" },
         ],
         correctAnswer: "c",
@@ -946,7 +672,6 @@ const moduleData: Record<string, ModuleContent> = {
       },
       {
         id: "q11",
-<<<<<<< HEAD
         question: "What is the recommended approach for messaging patients?",
         options: [
           { label: "Use your personal WhatsApp exclusively for convenience", value: "a" },
@@ -956,17 +681,6 @@ const moduleData: Record<string, ModuleContent> = {
         ],
         correctAnswer: "b",
         explanation: "Platform messaging is preferred for data protection; avoid storing patient data in personal messaging apps.",
-=======
-        question: "How long should you keep records of completed cases?",
-        options: [
-          { label: "Forever", value: "a" },
-          { label: "2 years (for audits/disputes), then delete", value: "b" },
-          { label: "Until the patient asks you to delete", value: "c" },
-          { label: "6 months", value: "d" },
-        ],
-        correctAnswer: "b",
-        explanation: "2 years for audit purposes, then delete - standard GDPR practice.",
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
       },
       {
         id: "q12",
@@ -990,24 +704,16 @@ const moduleData: Record<string, ModuleContent> = {
       {
         title: "Explaining MrClinc",
         content: [
-<<<<<<< HEAD
           "Who we are: 'MrClinc is a healthcare pathway coordination platform based in Antalya, Turkey.'",
           "What we do: 'We coordinate pathways between UK patients and healthcare providers in Turkey. We prepare your case, connect you with clinical channels, and support you through the coordination process.'",
           "What we do NOT do: 'We don't provide medical treatment, set prices, or make clinical decisions. We don't recommend specific clinics.'",
           "How it works: 'You submit a request. We prepare your case and connect you with the relevant clinical channel. They contact you directly.'",
           "Cost: 'The coordination service is free for patients. Any treatment costs are between you and the clinic directly.'",
-=======
-          "Who we are: 'MrClinc is an Antalya-based coordination platform.'",
-          "What we do: 'We connect UK patients with healthcare providers in Turkey. We coordinate the introduction and process.'",
-          "What we do NOT do: 'We don't provide medical treatment, set prices, or make clinical decisions. Clinics do that.'",
-          "How it works: 'You submit a request. Clinics review and send you quotes directly. You compare and decide.'",
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
         ],
       },
       {
         title: "Common Patient Questions",
         content: [
-<<<<<<< HEAD
           "'How much does it cost?' - 'I don't have pricing. Clinics provide information after reviewing your case. The coordination service is free.'",
           "'Which clinic is best?' - 'I can't recommend specific clinics. You'll receive information and you compare based on your priorities.'",
           "'Will this work for me?' - 'I can't make medical predictions. Clinics will evaluate your case during consultation.'",
@@ -1021,18 +727,11 @@ const moduleData: Record<string, ModuleContent> = {
           "The Skeptical Patient ('What's the catch?'): Acknowledge skepticism, explain transparently. 'Fair question. The coordination service is free for patients. We're funded through partnerships with clinics. You're never obligated to proceed.'",
           "The Emotional Patient ('I'm so scared'): Acknowledge feelings, offer process support, don't make decisions for them. 'I hear you — this is a difficult time. I can't make this decision for you, but I can help you understand the process and options. Have you spoken with your UK doctor about your concerns?'",
           "The Demanding Patient ('Just tell me which one!'): Hold boundary but offer alternative help. 'I understand the frustration, but I genuinely can't make that choice for you. What I CAN do is help you think through what matters most to you.'",
-=======
-          "'How much does it cost?' - 'I don't have pricing. Clinics provide quotes after reviewing your case.'",
-          "'Which clinic is best?' - 'I can't recommend specific clinics. You'll receive info from multiple clinics and compare.'",
-          "'Will this work for me?' - 'I can't make medical predictions. Clinics will evaluate during consultation.'",
-          "'Is this safe?' - 'Turkey has internationally accredited hospitals. Safety for your case is discussed with clinics.'",
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
         ],
       },
       {
         title: "Managing Expectations & Escalation",
         content: [
-<<<<<<< HEAD
           "Set realistic timelines: 'Clinics typically respond within a few working days, depending on clinical availability.'",
           "Clarify your role: 'I help with process questions. For medical questions, speak with clinics directly.'",
           "When to escalate: Patient reports clinic non-response beyond expected time, patient has process issue you can't resolve, patient is distressed or mentions urgent situation, you're unsure how to handle something.",
@@ -1046,19 +745,10 @@ const moduleData: Record<string, ModuleContent> = {
           "Why: These damage trust, create legal risk, and undermine MrClinc's positioning as neutral coordinator.",
         ],
       },
-=======
-          "Set realistic timelines: 'Clinics typically respond within 48-72 hours.'",
-          "Clarify your role: 'I help with process questions. For medical questions, speak with clinics directly.'",
-          "When to escalate: Patient complaints, no clinic response after 5 days, complex medical questions, patient is distressed.",
-          "Tone: Professional but warm, helpful but boundaried, honest about limitations.",
-        ],
-      },
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
     ],
     questions: [
       {
         id: "q1",
-<<<<<<< HEAD
         question: "The best way to describe MrClinc is:",
         options: [
           { label: "'A medical tourism agency finding the best deals'", value: "a" },
@@ -1176,125 +866,6 @@ const moduleData: Record<string, ModuleContent> = {
         ],
         correctAnswer: "b",
         explanation: "Hold the boundary, but offer alternative support within your scope.",
-=======
-        question: "Patient asks: 'What is MrClinc?' Your response should emphasize:",
-        options: [
-          { label: "'We're a medical tourism agency finding you the best deals'", value: "a" },
-          { label: "'We're a coordination platform connecting patients with clinics. You decide everything.'", value: "b" },
-          { label: "'We're a hospital in Turkey'", value: "c" },
-          { label: "'We're a discount healthcare service'", value: "d" },
-        ],
-        correctAnswer: "b",
-        explanation: "Coordination platform, patient control - accurate positioning.",
-      },
-      {
-        id: "q2",
-        question: "Patient: 'How much will my hair transplant cost?' You respond:",
-        options: [
-          { label: "'About €2,000-€3,000 usually'", value: "a" },
-          { label: "'I don't have pricing. Clinics send quotes directly after reviewing your case.'", value: "b" },
-          { label: "'Let me check with clinics and get back to you'", value: "c" },
-          { label: "'Much cheaper than UK, around €2,500'", value: "d" },
-        ],
-        correctAnswer: "b",
-        explanation: "PDs don't have or provide pricing - redirect to clinic quote process.",
-      },
-      {
-        id: "q3",
-        question: "Patient: 'Can you guarantee this will work?' You respond:",
-        options: [
-          { label: "'Yes, Turkish clinics have very high success rates'", value: "a" },
-          { label: "'I can't guarantee medical outcomes. Only doctors can discuss likely results for your case during consultation.'", value: "b" },
-          { label: "'Probably! Most patients are happy.'", value: "c" },
-          { label: "'Definitely, if you follow doctor's instructions'", value: "d" },
-        ],
-        correctAnswer: "b",
-        explanation: "No guarantees ever - medical outcomes are for doctors to discuss.",
-      },
-      {
-        id: "q4",
-        question: "When should you escalate to MrClinc team?",
-        options: [
-          { label: "Patient asks a simple process question", value: "a" },
-          { label: "Patient asks about pricing", value: "b" },
-          { label: "Patient hasn't heard from clinics after 5 days, or patient is very distressed", value: "c" },
-          { label: "Every time a patient submits a request", value: "d" },
-        ],
-        correctAnswer: "c",
-        explanation: "Escalate when timeline is exceeded or patient needs more support than you can provide.",
-      },
-      {
-        id: "q5",
-        question: "Patient: 'Will you come with me to Turkey?' You respond:",
-        options: [
-          { label: "'Yes, if you want. I can arrange that.'", value: "a" },
-          { label: "'My role is to help you access the platform. I don't accompany patients. Clinics provide support in Turkey.'", value: "b" },
-          { label: "'I can for an additional fee.'", value: "c" },
-          { label: "'Only if necessary for translation.'", value: "d" },
-        ],
-        correctAnswer: "b",
-        explanation: "PDs don't accompany - clinics provide in-country support.",
-      },
-      {
-        id: "q6",
-        question: "Patient hasn't heard from clinics for 6 days. You should:",
-        options: [
-          { label: "Tell patient to be patient and wait longer", value: "a" },
-          { label: "Contact clinics yourself and ask what's going on", value: "b" },
-          { label: "Escalate to MrClinc team: 'Patient submitted 6 days ago, no response. Can you check?'", value: "c" },
-          { label: "Assume the case isn't viable and move on", value: "d" },
-        ],
-        correctAnswer: "c",
-        explanation: "6 days exceeds normal timeline - escalate to platform.",
-      },
-      {
-        id: "q7",
-        question: "Patient: 'Do I pay you or MrClinc?' You respond:",
-        options: [
-          { label: "'You pay me a coordination fee, then the clinic separately.'", value: "a" },
-          { label: "'You don't pay me. Payment is between you and the clinic. MrClinc doesn't handle patient payments.'", value: "b" },
-          { label: "'You pay MrClinc, and we pay the clinic.'", value: "c" },
-          { label: "'I'll send you an invoice after treatment.'", value: "d" },
-        ],
-        correctAnswer: "b",
-        explanation: "Patients pay nothing to PD or MrClinc - only to chosen clinic.",
-      },
-      {
-        id: "q8",
-        question: "Patient is frustrated: 'Why can't you just tell me which clinic to choose?' You should:",
-        options: [
-          { label: "'I'm not being difficult! That's not my role!'", value: "a" },
-          { label: "Explain why: 'My role is coordination, not clinical guidance. Each patient's priorities are different. I can help you think through what matters to YOU.'", value: "b" },
-          { label: "'It's company policy. I'm not allowed.'", value: "c" },
-          { label: "'If you keep asking, I can't help you.'", value: "d" },
-        ],
-        correctAnswer: "b",
-        explanation: "Explain WHY boundary exists, offer alternative support within scope.",
-      },
-      {
-        id: "q9",
-        question: "Which tone is MOST appropriate?",
-        options: [
-          { label: "'You NEED to do this surgery in Turkey! NHS wait is too long!'", value: "a" },
-          { label: "'This is an option worth considering. Turkey offers value and shorter wait times. Ultimately, your decision.'", value: "b" },
-          { label: "'Whatever you decide is fine. I don't really care.'", value: "c" },
-          { label: "'Let me be honest: UK healthcare is a disaster. Go to Turkey.'", value: "d" },
-        ],
-        correctAnswer: "b",
-        explanation: "Professional, informative, no pressure - appropriate tone.",
-      },
-      {
-        id: "q10",
-        question: "Patient sends: 'Thank you so much for your help!' You respond:",
-        options: [
-          { label: "'No problem. Let me know if you need anything else.'", value: "a" },
-          { label: "'You're very welcome! Glad I could help. Wishing you the best. Feel free to reach out if you have questions.'", value: "b" },
-          { label: "'Just doing my job.'", value: "c" },
-          { label: "Ignore the message", value: "d" },
-        ],
-        correctAnswer: "b",
-        explanation: "Acknowledge gratitude warmly - strengthens relationship.",
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
       },
     ],
     passScore: 80,
@@ -1417,11 +988,7 @@ export default function ModuleDetailPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-4">
-<<<<<<< HEAD
               <Link href="/" className="flex-shrink-0"><img src="/images/logo.svg" alt="MrClinc" className="h-[42px] w-auto" /></Link>
-=======
-              <Link href="/" className="text-xl font-bold text-primary-600">MrClinc</Link>
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
               <span className="text-gray-300">|</span>
               <span className="text-gray-600 text-sm">PD Portal</span>
             </div>

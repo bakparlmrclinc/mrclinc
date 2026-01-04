@@ -250,21 +250,12 @@ export default function EducationPage() {
 
   // Get status badge
   const getStatusBadge = (progress: ModuleProgress | undefined, isUnlocked: boolean) => {
-<<<<<<< HEAD
     if (!isUnlocked) return <Badge variant="secondary" size="sm">Locked</Badge>;
     if (!progress) return <Badge variant="secondary" size="sm">Not Started</Badge>;
     switch (progress.status) {
       case "completed": return <Badge variant="success" size="sm">Completed</Badge>;
       case "in-progress": return <Badge variant="primary" size="sm">In Progress</Badge>;
       default: return <Badge variant="secondary" size="sm">Not Started</Badge>;
-=======
-    if (!isUnlocked) return <Badge variant="default" size="sm">Locked</Badge>;
-    if (!progress) return <Badge variant="default" size="sm">Not Started</Badge>;
-    switch (progress.status) {
-      case "completed": return <Badge variant="success" size="sm">Completed</Badge>;
-      case "in-progress": return <Badge variant="primary" size="sm">In Progress</Badge>;
-      default: return <Badge variant="default" size="sm">Not Started</Badge>;
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
     }
   };
 
@@ -274,11 +265,7 @@ export default function EducationPage() {
     const category = labCategories.find(c => c.id === categoryId);
     if (!category) return null;
     
-<<<<<<< HEAD
     if (!progress || progress.completed === 0) return <Badge variant="secondary" size="sm">Not Started</Badge>;
-=======
-    if (!progress || progress.completed === 0) return <Badge variant="default" size="sm">Not Started</Badge>;
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
     if (progress.completed === category.scenarioCount) return <Badge variant="success" size="sm">Completed</Badge>;
     return <Badge variant="primary" size="sm">{progress.completed}/{category.scenarioCount}</Badge>;
   };
@@ -301,11 +288,7 @@ export default function EducationPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-4">
-<<<<<<< HEAD
               <Link href="/" className="flex-shrink-0"><img src="/images/logo.svg" alt="MrClinc" className="h-[42px] w-auto" /></Link>
-=======
-              <Link href="/" className="text-xl font-bold text-primary-600">MrClinc</Link>
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
               <span className="text-gray-300">|</span>
               <span className="text-gray-600 text-sm">PD Portal</span>
             </div>
