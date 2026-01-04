@@ -17,7 +17,6 @@ export function Header() {
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<<<<<<< HEAD
         {/* Navbar height: 68px */}
         <div className="flex items-center justify-between h-[68px]">
           {/* Logo - mobile: 42px, desktop: 52px (+30%) */}
@@ -27,12 +26,6 @@ export function Header() {
               alt="MrClinc"
               className="h-[42px] md:h-[52px] w-auto"
             />
-=======
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <span className="text-xl font-bold text-primary-600">MrClinc</span>
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
           </Link>
 
           {/* Desktop Navigation */}
@@ -119,12 +112,7 @@ export function Header() {
             <Link
               href="/pd/login"
               className="block py-2 text-sm text-gray-500"
-<<<<<<< HEAD
               onClick={() => setIsMobileMenuOpen(false)}>
-=======
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
->>>>>>> fbe244dc6a2a09a9931f00d5083a54561d3a7e4b
               PD Login
             </Link>
           </div>
