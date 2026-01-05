@@ -17,10 +17,26 @@ export default function ComingSoonPage() {
             />
           </div>
 
-          {/* Coming Soon Badge */}
-          <div className="inline-flex items-center gap-2 bg-primary-50 text-primary-700 px-4 py-2 rounded-full text-sm font-medium mb-8">
-            <span className="w-2 h-2 bg-primary-500 rounded-full animate-pulse"></span>
-            Coming Soon
+          {/* Coming Soon Banner */}
+          <div className="mb-10">
+            <div 
+              className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl border"
+              style={{ 
+                background: 'linear-gradient(135deg, #f0f7fa 0%, #e8f4f8 100%)',
+                borderColor: '#d1e7ef'
+              }}
+            >
+              <span 
+                className="w-3 h-3 rounded-full animate-pulse"
+                style={{ backgroundColor: '#1e3a5f' }}
+              ></span>
+              <span 
+                className="text-lg md:text-xl font-semibold tracking-wide"
+                style={{ color: '#1e3a5f' }}
+              >
+                Coming Soon
+              </span>
+            </div>
           </div>
 
           {/* Headline */}
@@ -29,7 +45,7 @@ export default function ComingSoonPage() {
           </h1>
 
           {/* Description */}
-          <div className="text-gray-600 space-y-4 mb-12 text-left md:text-center">
+          <div className="text-gray-600 space-y-4 text-left md:text-center">
             <p>
               MR.CLINC is a healthcare pathway coordination platform designed to support patients 
               navigating complex treatment decisions, particularly in cross-border and second-opinion contexts.
@@ -39,29 +55,6 @@ export default function ComingSoonPage() {
               clear, ethical clinical pathways — ensuring transparency, traceability, and operational clarity 
               throughout the process.
             </p>
-          </div>
-
-          {/* Divider */}
-          <div className="border-t border-gray-200 my-10"></div>
-
-          {/* PD Section */}
-          <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm">
-            <h2 className="text-xl font-semibold text-gray-900 mb-3">
-              For Pathway Developers
-            </h2>
-            <p className="text-gray-600 mb-6 text-sm">
-              If you have been invited to join our Pathway Developer network, 
-              please complete the onboarding form below.
-            </p>
-            <Link
-              href="/pd/apply"
-              className="inline-flex items-center justify-center gap-2 bg-primary-600 hover:bg-primary-700 text-white font-medium px-6 py-3 rounded-lg transition-colors"
-            >
-              Complete PD Application
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
           </div>
         </div>
       </main>
