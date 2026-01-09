@@ -384,17 +384,25 @@ function ApplyForm() {
           <p className="text-gray-600 text-center mb-8">Choose the type of service you need</p>
           
           <div className="grid sm:grid-cols-2 gap-4">
-            <button
-              onClick={() => setFormData({ ...formData, mainCategory: "aesthetic", medicalSubType: "" })}
-              className="p-6 rounded-xl text-left transition-all"
+            {/* Aesthetic - Coming Soon */}
+            <div
+              className="p-6 rounded-xl text-left opacity-60 cursor-not-allowed"
               style={{
-                border: formData.mainCategory === "aesthetic" ? '2px solid #1B4965' : '2px solid #E5E7EB',
-                backgroundColor: formData.mainCategory === "aesthetic" ? '#F0F7FA' : 'white'
+                border: '2px solid #E5E7EB',
+                backgroundColor: '#F9FAFB'
               }}
             >
-              <h3 className="font-semibold text-gray-900 mb-1">Aesthetic Surgery</h3>
-              <p className="text-sm text-gray-600">Face, breast, body contouring, genital aesthetics, hair restoration</p>
-            </button>
+              <div className="flex items-center justify-between mb-1">
+                <h3 className="font-semibold text-gray-900">Aesthetic Surgery</h3>
+                <span 
+                  className="inline-block px-2 py-0.5 text-[10px] font-semibold rounded"
+                  style={{ backgroundColor: '#FEF3C7', color: '#92400E' }}
+                >
+                  Coming Soon
+                </span>
+              </div>
+              <p className="text-sm text-gray-500">Face, breast, body contouring, genital aesthetics, hair restoration</p>
+            </div>
 
             <button
               onClick={() => setFormData({ ...formData, mainCategory: "medical", medicalSubType: "" })}

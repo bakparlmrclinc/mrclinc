@@ -52,7 +52,7 @@ export default function ServicesPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="space-y-8">
               
-              {/* Aesthetic Surgery - COMING SOON */}
+              {/* Aesthetic Surgery - Coming Soon */}
               <div id="aesthetic" className="bg-white rounded-xl border border-gray-200 overflow-hidden opacity-75">
                 <div className="px-6 py-5 border-b border-gray-200" style={{ backgroundColor: '#F9FAFB' }}>
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
