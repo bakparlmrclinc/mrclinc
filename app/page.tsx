@@ -234,6 +234,94 @@ export default function Home() {
         </section>
 
         {/* ============================================
+            WHY MRCLINC
+            ============================================ */}
+        <section className="py-20" style={{ backgroundColor: '#F9FAFB' }}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Why MrClinc?
+              </h2>
+              <p className="text-gray-600">
+                Independent patient coordination — without sales pressure, clinic promotion, or hidden agendas.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              {/* Card 1 - We Work for the Patient */}
+              <div className="bg-white rounded-2xl p-6 border border-gray-200">
+                <div 
+                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
+                  style={{ backgroundColor: '#F0F7FA' }}
+                >
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#1B4965' }}>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                  We Work for the Patient
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  We don't represent clinics or doctors. We represent your interests and help you navigate options safely.
+                </p>
+              </div>
+
+              {/* Card 2 - No Sales, No Promotion */}
+              <div className="bg-white rounded-2xl p-6 border border-gray-200">
+                <div 
+                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
+                  style={{ backgroundColor: '#F0F7FA' }}
+                >
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#1B4965' }}>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                  No Sales, No Promotion
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  No clinic listings. No paid placements. No pressure to proceed.
+                </p>
+              </div>
+
+              {/* Card 3 - Clarity Before Commitment */}
+              <div className="bg-white rounded-2xl p-6 border border-gray-200">
+                <div 
+                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
+                  style={{ backgroundColor: '#F0F7FA' }}
+                >
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#1B4965' }}>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                  Clarity Before Commitment
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  Free second opinion where applicable. Clear pathways before you decide anything.
+                </p>
+              </div>
+            </div>
+
+            {/* Supporting Line */}
+            <div className="text-center mb-8">
+              <p className="text-gray-500">
+                Most healthcare travel platforms sell treatments. <span className="font-semibold text-gray-700">MrClinc helps you decide.</span>
+              </p>
+            </div>
+
+            {/* CTA */}
+            <div className="text-center">
+              <Link href="/why-mrclinc">
+                <Button variant="outline">
+                  Learn why patients choose MrClinc →
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================
             WHY ANTALYA
             ============================================ */}
         <section className="py-20" style={{ backgroundColor: '#F0F7FA' }}>

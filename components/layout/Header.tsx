@@ -8,9 +8,10 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { href: "/services", label: "Services" },
+    { href: "/why-mrclinc", label: "Why MrClinc" },
     { href: "/why-antalya", label: "Why Antalya" },
     { href: "/how-it-works", label: "How It Works" },
+    { href: "/services", label: "Services" },
     { href: "/faq", label: "FAQ" },
   ];
 
@@ -29,7 +30,7 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden md:flex items-center gap-5">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
