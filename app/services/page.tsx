@@ -52,22 +52,30 @@ export default function ServicesPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="space-y-8">
               
-              {/* Aesthetic Surgery */}
-              <div id="aesthetic" className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+              {/* Aesthetic Surgery - COMING SOON */}
+              <div id="aesthetic" className="bg-white rounded-xl border border-gray-200 overflow-hidden opacity-75">
                 <div className="px-6 py-5 border-b border-gray-200" style={{ backgroundColor: '#F9FAFB' }}>
-                  <div className="flex items-center gap-4">
-                    <div 
-                      className="w-12 h-12 rounded-xl flex items-center justify-center"
-                      style={{ backgroundColor: '#F0F7FA', color: '#1B4965' }}
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div className="flex items-center gap-4">
+                      <div 
+                        className="w-12 h-12 rounded-xl flex items-center justify-center"
+                        style={{ backgroundColor: '#F0F7FA', color: '#1B4965' }}
+                      >
+                        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h2 className="text-xl font-bold text-gray-900">Aesthetic Surgery</h2>
+                        <p className="text-gray-600 text-sm">Pathway Scope</p>
+                      </div>
+                    </div>
+                    <span 
+                      className="inline-block px-3 py-1 text-xs font-semibold rounded-full w-fit"
+                      style={{ backgroundColor: '#FEF3C7', color: '#92400E' }}
                     >
-                      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h2 className="text-xl font-bold text-gray-900">Aesthetic Surgery</h2>
-                      <p className="text-gray-600 text-sm">Pathway Scope</p>
-                    </div>
+                      Coming Soon
+                    </span>
                   </div>
                 </div>
                 <div className="p-6">
@@ -93,11 +101,14 @@ export default function ServicesPage() {
                   </div>
                   <div className="pt-6 border-t border-gray-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <p className="text-sm text-gray-500">
-                      Submit your request to begin the coordination process
+                      This service will be available soon
                     </p>
-                    <Link href="/apply?service=aesthetic">
-                      <Button variant="primary">Submit Request</Button>
-                    </Link>
+                    <button
+                      disabled
+                      className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium text-sm bg-gray-200 text-gray-400 cursor-not-allowed"
+                    >
+                      Coming Soon
+                    </button>
                   </div>
                 </div>
               </div>
