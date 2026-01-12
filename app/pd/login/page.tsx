@@ -70,7 +70,7 @@ export default function PDLoginPage() {
         router.push("/pd/portal");
         router.refresh();
       } else {
-        setLoginError(data.error || "Invalid PD Code or password. Please try again.");
+        setLoginError(data.error?.message || data.error || "Invalid PD Code or password. Please try again.");
       }
     } catch {
       setLoginError("Connection error. Please try again.");
