@@ -150,27 +150,18 @@ export async function validatePDCredentials(
   pdCode: string,
   password: string
 ): Promise<PDSessionUser | null> {
-  // Normalize PD code - accept with or without dash
+  // Normalize PD code - remove dash if present, or add if missing
   const normalizedCode = pdCode.toUpperCase().trim();
+  const codeWithoutDash = normalizedCode.replace(/-/g, "");
+  const codeWithDash = codeWithoutDash.replace(/^PD/, "PD-");
   
-  // Try to find PD by exact code or with dash added
+  // Try both formats
   let pd = await prisma.pD.findFirst({
     where: { 
-      pdCode: normalizedCode,
+      pdCode: { in: [normalizedCode, codeWithoutDash, codeWithDash] },
       status: "ACTIVE",
     },
   });
-  
-  // If not found and code doesn't have dash, try with dash
-  if (!pd && !normalizedCode.includes("-")) {
-    const codeWithDash = `PD-${normalizedCode.replace(/^PD/i, "")}`;
-    pd = await prisma.pD.findFirst({
-      where: { 
-        pdCode: codeWithDash,
-        status: "ACTIVE",
-      },
-    });
-  }
 
   if (!pd || !pd.passwordHash) return null;
 
