@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -34,8 +33,8 @@ export default function PDLoginPage() {
     
     if (!formData.pdCode.trim()) {
       newErrors.pdCode = "PD Code is required";
-    } else if (!/^PD-[A-Z0-9]{5}$/.test(formData.pdCode.toUpperCase())) {
-      newErrors.pdCode = "Invalid format. Example: PD-A1B2C";
+    } else if (!/^PD-[A-Z0-9]{5,6}$/i.test(formData.pdCode)) {
+      newErrors.pdCode = "Invalid format. Example: PD-448127";
     }
     
     if (!formData.password) {
@@ -81,18 +80,21 @@ export default function PDLoginPage() {
   };
 
   return (
-    <div className="min-h-[80vh] bg-gray-50 flex items-center justify-center py-12 px-4">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md">
-        {/* Logo/Title */}
+        {/* Logo */}
         <div className="text-center mb-8">
-          <Link href="/" className="inline-block">
-            <img src="/images/logo.svg" alt="MrClinc" className="h-[52px] w-auto mx-auto" />
+          <Link href="/">
+            <img
+              src="/images/logo.svg"
+              alt="MR.CLINC"
+              className="h-12 mx-auto mb-4"
+            />
           </Link>
-          <p className="text-gray-600 mt-2">Pathway Developer Portal</p>
+          <p className="text-gray-600">Pathway Developer Portal</p>
         </div>
 
-        {/* Login Card */}
-        <Card variant="bordered">
+        <Card>
           <CardHeader>
             <CardTitle>Sign In</CardTitle>
             <CardDescription>
@@ -101,45 +103,55 @@ export default function PDLoginPage() {
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  PD Code
+                </label>
+                <Input
+                  value={formData.pdCode}
+                  onChange={(e) => handleChange("pdCode", e.target.value)}
+                  placeholder="PD-448127"
+                  error={errors.pdCode}
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Password
+                </label>
+                <Input
+                  type="password"
+                  value={formData.password}
+                  onChange={(e) => handleChange("password", e.target.value)}
+                  placeholder="••••••••••••"
+                  error={errors.password}
+                />
+              </div>
+
               {loginError && (
-                <div className="bg-error-50 border border-error-200 text-error-700 px-4 py-3 rounded-lg text-sm">
+                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
                   {loginError}
                 </div>
               )}
-
-              <Input
-                label="PD Code"
-                value={formData.pdCode}
-                onChange={(e) => handleChange("pdCode", e.target.value.toUpperCase())}
-                error={errors.pdCode}
-                placeholder="PD-XXXXX"
-                className="font-mono"
-              />
-
-              <Input
-                label="Password"
-                type="password"
-                value={formData.password}
-                onChange={(e) => handleChange("password", e.target.value)}
-                error={errors.password}
-                placeholder="Enter your password"
-              />
 
               <Button
                 type="submit"
                 variant="primary"
                 className="w-full"
                 isLoading={isLoading}
-                disabled={isLoading}
               >
-                {isLoading ? "Signing in..." : "Sign In"}
+                Sign In
               </Button>
             </form>
 
-            <div className="mt-6 pt-6 border-t border-gray-200">
-              <p className="text-sm text-gray-600 text-center">
+            <div className="mt-6 pt-6 border-t border-gray-200 text-center">
+              <p className="text-sm text-gray-600">
                 Need help accessing your account?{" "}
-                <Link href="/contact" className="text-primary-600 hover:underline">
+                <Link
+                  href="/contact"
+                  className="font-medium hover:underline"
+                  style={{ color: "#1B4965" }}
+                >
                   Contact support
                 </Link>
               </p>
@@ -147,12 +159,11 @@ export default function PDLoginPage() {
           </CardContent>
         </Card>
 
-        {/* Back link */}
-        <div className="mt-6 text-center">
-          <Link href="/pd" className="text-sm text-gray-600 hover:text-primary-600">
+        <p className="text-center mt-6 text-sm text-gray-500">
+          <Link href="/pd" className="hover:underline">
             Learn about the PD Program
           </Link>
-        </div>
+        </p>
       </div>
     </div>
   );
