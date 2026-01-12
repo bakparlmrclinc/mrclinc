@@ -6,7 +6,6 @@
  * - GET: Check auth status
  * - DELETE: Logout
  */
-
 import { NextRequest } from "next/server";
 import {
   successResponse,
@@ -30,7 +29,6 @@ import { cookies } from "next/headers";
 // =============================================================================
 // POST - Login
 // =============================================================================
-
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -52,10 +50,10 @@ export async function POST(req: NextRequest) {
       return validationErrorResponse(parseResult.error);
     }
 
-    const { email, accessCode } = parseResult.data;
+    const { pdCode, password } = parseResult.data;
 
     // Validate credentials
-    const pd = await validatePDCredentials(email, accessCode);
+    const pd = await validatePDCredentials(pdCode, password);
     if (!pd) {
       return unauthorizedResponse(PD_MESSAGES.loginFailed);
     }
@@ -79,7 +77,6 @@ export async function POST(req: NextRequest) {
         city: pd.city,
       },
     });
-
   } catch (error) {
     console.error("PD auth error:", error);
     return serverErrorResponse("Authentication failed. Please try again.");
@@ -89,11 +86,9 @@ export async function POST(req: NextRequest) {
 // =============================================================================
 // GET - Check auth status
 // =============================================================================
-
 export async function GET() {
   try {
     const pd = await getPDSessionFromCookies();
-
     if (!pd) {
       return unauthorizedResponse(PD_MESSAGES.sessionExpired);
     }
@@ -106,7 +101,6 @@ export async function GET() {
         city: pd.city,
       },
     });
-
   } catch (error) {
     console.error("PD auth check error:", error);
     return serverErrorResponse("Failed to verify authentication.");
@@ -116,7 +110,6 @@ export async function GET() {
 // =============================================================================
 // DELETE - Logout
 // =============================================================================
-
 export async function DELETE() {
   try {
     const cookieStore = await cookies();

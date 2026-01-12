@@ -4,10 +4,9 @@
  * Server-side session handling for PD authentication
  * Uses Prisma + HTTP-only cookies
  */
-
 import { prisma } from "@/lib/db/prisma";
 import { cookies } from "next/headers";
-import { hashPassword, verifyPassword } from "./password";
+import { verifyPassword } from "./password";
 
 const PD_SESSION_COOKIE_NAME = "pd_session";
 const SESSION_DURATION_HOURS = 24;
@@ -116,7 +115,9 @@ export async function destroyPDSession(token: string): Promise<void> {
 export async function getPDSessionFromCookies(): Promise<PDSessionUser | null> {
   const cookieStore = await cookies();
   const token = cookieStore.get(PD_SESSION_COOKIE_NAME)?.value;
+
   if (!token) return null;
+
   return validatePDSession(token);
 }
 
@@ -143,18 +144,33 @@ export async function clearPDSessionCookie(): Promise<void> {
 }
 
 /**
- * Validate PD credentials (email + password)
+ * Validate PD credentials (pdCode + password)
  */
 export async function validatePDCredentials(
-  email: string,
+  pdCode: string,
   password: string
 ): Promise<PDSessionUser | null> {
-  const pd = await prisma.pD.findFirst({
+  // Normalize PD code - accept with or without dash
+  const normalizedCode = pdCode.toUpperCase().trim();
+  
+  // Try to find PD by exact code or with dash added
+  let pd = await prisma.pD.findFirst({
     where: { 
-      email: email.toLowerCase(),
+      pdCode: normalizedCode,
       status: "ACTIVE",
     },
   });
+  
+  // If not found and code doesn't have dash, try with dash
+  if (!pd && !normalizedCode.includes("-")) {
+    const codeWithDash = `PD-${normalizedCode.replace(/^PD/i, "")}`;
+    pd = await prisma.pD.findFirst({
+      where: { 
+        pdCode: codeWithDash,
+        status: "ACTIVE",
+      },
+    });
+  }
 
   if (!pd || !pd.passwordHash) return null;
 

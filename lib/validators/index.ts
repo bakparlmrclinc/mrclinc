@@ -19,7 +19,7 @@ export const trackingCodeSchema = z
   .regex(/^TRK-[A-Z0-9]{5}$/, "Invalid tracking code format");
 
 /**
- * PD code format: PD-XXXXX (5 alphanumeric chars)
+ * PD code format: PD-XXXXX (5-6 alphanumeric chars)
  * Now accepts any string - validation happens server-side
  * Invalid formats are silently treated as empty (goes to pool)
  */
@@ -117,14 +117,12 @@ export const trackRequestSchema = z.object({
 // =============================================================================
 
 /**
- * PD login schema
+ * PD login schema - uses PD Code + Password
  * Used by POST /api/pd/auth
  */
 export const pdLoginSchema = z.object({
-  email: emailSchema,
-  // Password field - in production, use proper hashing
-  // For now, placeholder for manual onboarding flow
-  accessCode: z.string().min(6, "Access code required"),
+  pdCode: z.string().min(1, "PD Code is required"),
+  password: z.string().min(1, "Password is required"),
 });
 
 export type PDLoginInput = z.infer<typeof pdLoginSchema>;
@@ -224,7 +222,8 @@ export function generateTrackingCode(): string {
 export function normalizePDCode(code: string | undefined | null): string | null {
   if (!code || code.trim() === "") return null;
   const normalized = code.toUpperCase().trim();
-  if (/^PD-[A-Z0-9]{5}$/.test(normalized)) {
+  // Accept PD-XXXXX or PD-XXXXXX (5-6 chars)
+  if (/^PD-[A-Z0-9]{5,6}$/.test(normalized)) {
     return normalized;
   }
   return null;
