@@ -44,8 +44,9 @@ export default function PDDocsPage() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await fetch("/api/pd/session");
-        if (res.ok) {
+        const res = await fetch("/api/pd/auth");
+        const data = await res.json();
+        if (data.success && data.data?.pd) {
           setIsAuthenticated(true);
         } else {
           router.push("/pd/login");

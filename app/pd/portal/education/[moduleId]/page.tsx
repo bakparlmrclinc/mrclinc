@@ -887,37 +887,36 @@ export default function ModuleDetailPage() {
   const module = moduleData[moduleId];
 
   useEffect(() => {
-    const session = localStorage.getItem("pdSession");
-    if (!session) {
-      router.push("/pd/login");
-      return;
-    }
+    fetch("/api/pd/auth")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success && data.data?.pd) {
+          if (!module) {
+            router.push("/pd/portal/education");
+            return;
+          }
 
-    const parsed = JSON.parse(session);
-    if (!parsed.loggedIn) {
-      router.push("/pd/login");
-      return;
-    }
+          // Mark as in-progress
+          const savedProgress = localStorage.getItem("pdEducationProgress");
+          const progress = savedProgress ? JSON.parse(savedProgress) : {};
+          if (!progress[moduleId] || progress[moduleId].status === "not-started") {
+            progress[moduleId] = {
+              moduleId,
+              status: "in-progress",
+              score: null,
+              completedAt: null,
+            };
+            localStorage.setItem("pdEducationProgress", JSON.stringify(progress));
+          }
 
-    if (!module) {
-      router.push("/pd/portal/education");
-      return;
-    }
-
-    // Mark as in-progress
-    const savedProgress = localStorage.getItem("pdEducationProgress");
-    const progress = savedProgress ? JSON.parse(savedProgress) : {};
-    if (!progress[moduleId] || progress[moduleId].status === "not-started") {
-      progress[moduleId] = {
-        moduleId,
-        status: "in-progress",
-        score: null,
-        completedAt: null,
-      };
-      localStorage.setItem("pdEducationProgress", JSON.stringify(progress));
-    }
-
-    setIsLoading(false);
+          setIsLoading(false);
+        } else {
+          router.push("/pd/login");
+        }
+      })
+      .catch(() => {
+        router.push("/pd/login");
+      });
   }, [router, moduleId, module]);
 
   const handleAnswer = (questionId: string, value: string) => {
