@@ -9,6 +9,7 @@ import {
   CardContent,
 } from "@/components/ui/Card";
 import PDPortalHeader from "../PDPortalHeader";
+import ChangePasswordForm from "./ChangePasswordForm";
 
 export default async function PDProfilePage() {
   // Server-side session validation
@@ -207,9 +208,11 @@ export default async function PDProfilePage() {
               <CardTitle>Account Settings</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
-                <p className="text-sm text-gray-600">
-                  To update your contact information or change your password, please contact support.
+              <ChangePasswordForm />
+
+              <div className="mt-6 pt-6 border-t border-gray-200">
+                <p className="text-sm text-gray-600 mb-3">
+                  To update your email or phone number, please contact support.
                 </p>
                 <Link
                   href="/contact"
