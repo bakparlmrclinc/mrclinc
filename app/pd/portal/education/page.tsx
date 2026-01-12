@@ -80,8 +80,8 @@ export default function EducationPage() {
     fetch("/api/pd/auth")
       .then((res) => res.json())
       .then((data) => {
-        if (data.success && data.pd) {
-          setPdInfo({ name: data.pd.name, code: data.pd.code });
+        if (data.success && data.data?.pd) {
+          setPdInfo({ name: data.data.pd.name, code: data.data.pd.code });
           const savedModuleProgress = localStorage.getItem("pdEducationProgress");
           if (savedModuleProgress) setModuleProgress(JSON.parse(savedModuleProgress));
           const savedLabProgress = localStorage.getItem("pdTrainingLabProgress");
