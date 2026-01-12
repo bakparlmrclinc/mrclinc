@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  images: {
+    formats: ['image/avif', 'image/webp'],
+  },
   
   // Development: No CSP restrictions for HMR/dev tools
   // Production: Can add strict CSP via headers() if needed
