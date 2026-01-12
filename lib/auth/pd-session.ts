@@ -7,6 +7,7 @@ import { verifyPassword } from "./password";
 
 const PD_SESSION_COOKIE_NAME = "pd_session";
 const SESSION_DURATION_HOURS = 24;
+const SESSION_DURATION_REMEMBER_DAYS = 30;
 
 function generateSessionToken(): string {
   const bytes = new Uint8Array(32);
@@ -22,9 +23,12 @@ export interface PDSessionUser {
   email: string | null;
 }
 
-export async function createPDSession(pdId: string, ipAddress?: string, userAgent?: string): Promise<string> {
+export async function createPDSession(pdId: string, ipAddress?: string, userAgent?: string, rememberMe: boolean = false): Promise<string> {
   const token = generateSessionToken();
-  const expiresAt = new Date(Date.now() + SESSION_DURATION_HOURS * 60 * 60 * 1000);
+  const durationMs = rememberMe
+    ? SESSION_DURATION_REMEMBER_DAYS * 24 * 60 * 60 * 1000
+    : SESSION_DURATION_HOURS * 60 * 60 * 1000;
+  const expiresAt = new Date(Date.now() + durationMs);
   await prisma.pDSession.create({ data: { pdId, token, expiresAt, ipAddress, userAgent } });
   await prisma.pD.update({ where: { id: pdId }, data: { lastLoginAt: new Date() } });
   return token;
@@ -53,9 +57,12 @@ export async function getPDSessionFromCookies(): Promise<PDSessionUser | null> {
   return validatePDSession(token);
 }
 
-export async function setPDSessionCookie(token: string): Promise<void> {
+export async function setPDSessionCookie(token: string, rememberMe: boolean = false): Promise<void> {
   const cookieStore = await cookies();
-  cookieStore.set(PD_SESSION_COOKIE_NAME, token, { httpOnly: true, secure: process.env.NODE_ENV === "production", sameSite: "lax", maxAge: SESSION_DURATION_HOURS * 60 * 60, path: "/" });
+  const maxAge = rememberMe
+    ? SESSION_DURATION_REMEMBER_DAYS * 24 * 60 * 60
+    : SESSION_DURATION_HOURS * 60 * 60;
+  cookieStore.set(PD_SESSION_COOKIE_NAME, token, { httpOnly: true, secure: process.env.NODE_ENV === "production", sameSite: "lax", maxAge, path: "/" });
 }
 
 export async function clearPDSessionCookie(): Promise<void> {
@@ -63,14 +70,29 @@ export async function clearPDSessionCookie(): Promise<void> {
   cookieStore.delete(PD_SESSION_COOKIE_NAME);
 }
 
-export async function validatePDCredentials(pdCode: string, password: string): Promise<PDSessionUser | null> {
-  const normalizedCode = pdCode.toUpperCase().trim();
-  const codeWithoutDash = normalizedCode.replace(/-/g, "");
-  const codeWithDash = codeWithoutDash.replace(/^PD/, "PD-");
-  
-  const pd = await prisma.pD.findFirst({
-    where: { pdCode: { in: [normalizedCode, codeWithoutDash, codeWithDash] }, status: "ACTIVE" },
-  });
+export async function validatePDCredentials(identifier: string, password: string): Promise<PDSessionUser | null> {
+  const trimmedIdentifier = identifier.trim();
+
+  let pd;
+
+  // Check if identifier is an email (contains @)
+  if (trimmedIdentifier.includes("@")) {
+    // Email login - case-insensitive lookup
+    pd = await prisma.pD.findFirst({
+      where: { email: { equals: trimmedIdentifier, mode: "insensitive" }, status: "ACTIVE" },
+    });
+  } else {
+    // PD Code login - normalize and try different formats
+    const normalizedCode = trimmedIdentifier.toUpperCase();
+    const codeWithoutDash = normalizedCode.replace(/-/g, "");
+    const codeWithDash = codeWithoutDash.startsWith("PD")
+      ? codeWithoutDash.replace(/^PD/, "PD-")
+      : `PD-${codeWithoutDash}`;
+
+    pd = await prisma.pD.findFirst({
+      where: { pdCode: { in: [normalizedCode, codeWithoutDash, codeWithDash] }, status: "ACTIVE" },
+    });
+  }
 
   if (!pd || !pd.passwordHash) return null;
   const isValid = await verifyPassword(password, pd.passwordHash);

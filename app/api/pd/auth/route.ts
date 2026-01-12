@@ -50,10 +50,10 @@ export async function POST(req: NextRequest) {
       return validationErrorResponse(parseResult.error);
     }
 
-    const { pdCode, password } = parseResult.data;
+    const { identifier, password, rememberMe } = parseResult.data;
 
     // Validate credentials
-    const pd = await validatePDCredentials(pdCode, password);
+    const pd = await validatePDCredentials(identifier, password);
     if (!pd) {
       return unauthorizedResponse(PD_MESSAGES.loginFailed);
     }
@@ -62,11 +62,12 @@ export async function POST(req: NextRequest) {
     const token = await createPDSession(
       pd.id,
       req.headers.get("x-forwarded-for") || undefined,
-      req.headers.get("user-agent") || undefined
+      req.headers.get("user-agent") || undefined,
+      rememberMe
     );
 
     // Set cookie
-    await setPDSessionCookie(token);
+    await setPDSessionCookie(token, rememberMe);
 
     // Return safe PD info
     return successResponse({

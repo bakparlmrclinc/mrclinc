@@ -117,12 +117,13 @@ export const trackRequestSchema = z.object({
 // =============================================================================
 
 /**
- * PD login schema - uses PD Code + Password
+ * PD login schema - uses Email or PD Code + Password
  * Used by POST /api/pd/auth
  */
 export const pdLoginSchema = z.object({
-  pdCode: z.string().min(1, "PD Code is required"),
+  identifier: z.string().min(1, "Email or PD Code is required"),
   password: z.string().min(1, "Password is required"),
+  rememberMe: z.boolean().optional().default(false),
 });
 
 export type PDLoginInput = z.infer<typeof pdLoginSchema>;

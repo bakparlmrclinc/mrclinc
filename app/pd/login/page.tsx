@@ -15,14 +15,15 @@ import {
 export default function PDLoginPage() {
   const router = useRouter();
   const [formData, setFormData] = useState({
-    pdCode: "",
+    identifier: "",
     password: "",
+    rememberMe: false,
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
   const [loginError, setLoginError] = useState("");
 
-  const handleChange = (field: string, value: string) => {
+  const handleChange = (field: string, value: string | boolean) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
     if (errors[field]) setErrors((prev) => ({ ...prev, [field]: "" }));
     if (loginError) setLoginError("");
@@ -30,13 +31,26 @@ export default function PDLoginPage() {
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
-    
-    if (!formData.pdCode.trim()) {
-      newErrors.pdCode = "PD Code is required";
-    } else if (!/^PD-?[A-Z0-9]{5,6}$/i.test(formData.pdCode)) {
-      newErrors.pdCode = "Invalid format. Example: PD-XXXXXX";
+
+    const trimmedIdentifier = formData.identifier.trim();
+    if (!trimmedIdentifier) {
+      newErrors.identifier = "Email or PD Code is required";
+    } else {
+      // Check if it's an email (contains @)
+      const isEmail = trimmedIdentifier.includes("@");
+      if (isEmail) {
+        // Basic email validation
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedIdentifier)) {
+          newErrors.identifier = "Invalid email format";
+        }
+      } else {
+        // PD Code validation - accepts: PD-XXXXX, PDXXXXX, or just XXXXX (5-6 chars)
+        if (!/^(PD-?)?[A-Z0-9]{5,6}$/i.test(trimmedIdentifier)) {
+          newErrors.identifier = "Invalid format. Use email or PD Code (e.g., PD-XXXXXX)";
+        }
+      }
     }
-    
+
     if (!formData.password) {
       newErrors.password = "Password is required";
     }
@@ -58,8 +72,9 @@ export default function PDLoginPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          pdCode: formData.pdCode.toUpperCase(),
+          identifier: formData.identifier.trim(),
           password: formData.password,
+          rememberMe: formData.rememberMe,
         }),
       });
 
@@ -98,20 +113,20 @@ export default function PDLoginPage() {
           <CardHeader>
             <CardTitle>Sign In</CardTitle>
             <CardDescription>
-              Enter your PD Code and password to access your portal.
+              Enter your email or PD Code and password to access your portal.
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  PD Code
+                  Email or PD Code
                 </label>
                 <Input
-                  value={formData.pdCode}
-                  onChange={(e) => handleChange("pdCode", e.target.value)}
-                  placeholder="PD-XXXXXX"
-                  error={errors.pdCode}
+                  value={formData.identifier}
+                  onChange={(e) => handleChange("identifier", e.target.value)}
+                  placeholder="email@example.com or PD-XXXXXX"
+                  error={errors.identifier}
                 />
               </div>
 
@@ -126,6 +141,19 @@ export default function PDLoginPage() {
                   placeholder="••••••••••••"
                   error={errors.password}
                 />
+              </div>
+
+              <div className="flex items-center">
+                <input
+                  type="checkbox"
+                  id="rememberMe"
+                  checked={formData.rememberMe}
+                  onChange={(e) => handleChange("rememberMe", e.target.checked)}
+                  className="h-4 w-4 rounded border-gray-300 text-[#1B4965] focus:ring-[#1B4965]"
+                />
+                <label htmlFor="rememberMe" className="ml-2 block text-sm text-gray-700">
+                  Remember me
+                </label>
               </div>
 
               {loginError && (
