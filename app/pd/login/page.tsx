@@ -33,8 +33,8 @@ export default function PDLoginPage() {
     
     if (!formData.pdCode.trim()) {
       newErrors.pdCode = "PD Code is required";
-    } else if (!/^PD-[A-Z0-9]{5,6}$/i.test(formData.pdCode)) {
-      newErrors.pdCode = "Invalid format. Example: PD-448127";
+    } else if (!/^PD-?[A-Z0-9]{5,6}$/i.test(formData.pdCode)) {
+      newErrors.pdCode = "Invalid format. Example: PD-XXXXXX";
     }
     
     if (!formData.password) {
@@ -110,7 +110,7 @@ export default function PDLoginPage() {
                 <Input
                   value={formData.pdCode}
                   onChange={(e) => handleChange("pdCode", e.target.value)}
-                  placeholder="PD-448127"
+                  placeholder="PD-XXXXXX"
                   error={errors.pdCode}
                 />
               </div>
