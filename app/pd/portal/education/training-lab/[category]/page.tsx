@@ -880,36 +880,35 @@ export default function TrainingLabCategoryPage() {
   const category = categoryData[categoryId];
 
   useEffect(() => {
-    const session = localStorage.getItem("pdSession");
-    if (!session) {
-      router.push("/pd/login");
-      return;
-    }
+    fetch("/api/pd/auth")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success && data.data?.pd) {
+          if (!category) {
+            router.push("/pd/portal/education");
+            return;
+          }
 
-    const parsed = JSON.parse(session);
-    if (!parsed.loggedIn) {
-      router.push("/pd/login");
-      return;
-    }
+          // Load progress
+          const savedProgress = localStorage.getItem("pdTrainingLabProgress");
+          if (savedProgress) {
+            const allProgress = JSON.parse(savedProgress);
+            if (allProgress[categoryId]) {
+              setProgress(allProgress[categoryId]);
+              if (allProgress[categoryId].completed === category.scenarios.length) {
+                setViewMode("complete");
+              }
+            }
+          }
 
-    if (!category) {
-      router.push("/pd/portal/education");
-      return;
-    }
-
-    // Load progress
-    const savedProgress = localStorage.getItem("pdTrainingLabProgress");
-    if (savedProgress) {
-      const allProgress = JSON.parse(savedProgress);
-      if (allProgress[categoryId]) {
-        setProgress(allProgress[categoryId]);
-        if (allProgress[categoryId].completed === category.scenarios.length) {
-          setViewMode("complete");
+          setIsLoading(false);
+        } else {
+          router.push("/pd/login");
         }
-      }
-    }
-
-    setIsLoading(false);
+      })
+      .catch(() => {
+        router.push("/pd/login");
+      });
   }, [router, categoryId, category]);
 
   const saveProgress = (newProgress: { completed: number; correct: number }) => {
